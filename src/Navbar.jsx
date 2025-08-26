@@ -4,6 +4,9 @@ import logo from '../public/logo.png';
 import './Logos.css';
 
 export function Navbar() {
+
+    const sections = ['Projects', 'About Me'];
+
     return (
         <div style={{
             width: '100%',
@@ -30,6 +33,14 @@ export function Navbar() {
                 backgroundColor: '#787878',
                 margin: '0 16px'
             }} />
+            {sections.map((section, index) => (
+                <div className="navbar-section" style={{
+                    color: '#000',
+                    paddingLeft: index ? '10px' : '0px'
+                }}>
+                    {section}
+                </div>
+            ))}
             <div style={{
                 width: '40px',
                 height: '40px',

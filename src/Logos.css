@@ -3,3 +3,7 @@
     padding-left: 15px;
     padding-top: 3px
 }
+
+.navbar-section:hover {
+    font-weight:bold;
+}
