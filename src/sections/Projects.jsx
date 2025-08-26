@@ -27,7 +27,7 @@ function Project({ title, description, link }) {
       >
         {title}
       </h3>
-      <p style={{ margin: '0 0 16px 0', color: '#555' }}>{description}</p>
+      <p className="playfair-display" style={{ margin: '0 0 16px 0', color: '#555' }}>{description}</p>
       {link && (
         <a
           className="playfair-display"
