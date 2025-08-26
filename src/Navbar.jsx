@@ -34,7 +34,7 @@ export function Navbar() {
                 margin: '0 16px'
             }} />
             {sections.map((section, index) => (
-                <div className="navbar-section" style={{
+                <div className="navbar-section playfair-display" style={{
                     color: '#000',
                     paddingLeft: index ? '10px' : '0px'
                 }}>

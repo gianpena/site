@@ -7,3 +7,11 @@
 .navbar-section:hover {
     font-weight:bold;
 }
+
+.playfair-display{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 10;
+  font-style: normal;
+  text-align: center;
+}
