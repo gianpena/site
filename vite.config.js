@@ -10,12 +10,14 @@ const certPath = process.env.SSL_CERT_PATH;
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    port: 443,
-    host: true,
-    https: {
-      key: fs.readFileSync(keyPath),
-      cert: fs.readFileSync(certPath),
-    }
-  }
+  ...(keyPath && certPath ? {
+      server: {
+        port: 443,
+        host: true,
+        https: {
+          key: fs.readFileSync(keyPath),
+          cert: fs.readFileSync(certPath),
+        }
+      }
+  } : {})
 })
