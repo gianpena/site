@@ -59,6 +59,9 @@ export function Projects() {
         <div className="center-content">
             <Project title="Bedstats" description="A discord bot made to track Hypixel bedwars statistics." link="https://www.bedstats.net/"/>
             <Project title="This Website!" description="Made with React, hosted on AWS." link="https://github.com/gianpena/site" />
+            <div className="playfair-display" style={{color: '#ffffff'}}>
+                I have more projects than just the ones listed above, but these are the ones I can publicly share!
+            </div>
         </div>
     );
 }
