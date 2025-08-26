@@ -1,9 +1,16 @@
+import { Link } from 'react-router-dom';
 import github from '../public/github.svg';
 import linkedin from '../public/linkedin.svg';
 import logo from '../public/logo.png';
 import './Logos.css';
 
 export function Navbar() {
+
+    const sections = ['Projects', 'About Me'];
+    const sectionMap = {
+        'Projects': '/projects',
+        'About Me': '/about'};
+
     return (
         <div style={{
             width: '100%',
@@ -23,19 +30,44 @@ export function Navbar() {
             <a href="https://linkedin.com/in/gian-pena" target="_blank" rel="noopener noreferrer">
                 <img className="logo-style" src={linkedin} alt="LinkedIn"/>
             </a>
-            <div style={{
-                width: '40px',
-                height: '40px',
-                backgroundColor: '#000',
-                borderRadius: '30%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'absolute',
-                right: '20px'
-            }}>
+            <span style={{
+                display: 'inline-block',
+                width: '4px',
+                height: '32px',
+                backgroundColor: '#787878',
+                margin: '0 16px'
+            }} />
+            {sections.map((section, index) => (
+                <Link
+                    key={section}
+                    to={sectionMap[section]}
+                    className="navbar-section playfair-display"
+                    style={{
+                        color: '#000',
+                        textDecoration: 'none',
+                        paddingLeft: index ? '10px' : '0px'
+                    }}
+                >
+                    {section}
+                </Link>
+            ))}
+            <Link
+                key="Home"
+                to="/"
+                style={{
+                    width: '40px',
+                    height: '40px',
+                    backgroundColor: '#000',
+                    borderRadius: '30%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'absolute',
+                    right: '20px'
+                }}
+            >
                 <img src={logo} alt="Logo" style={{ width: '24px', height: '24px', paddingBottom: '2px' }} />
-            </div>
+            </Link>
         </div>
     );
 }
