@@ -10,8 +10,6 @@ function Project({ title, description, link }) {
         boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
         padding: '24px',
         margin: '16px 0',
-        width: '400px', // Fixed width
-        maxWidth: '400px', // Ensures it doesn't grow
         transition: 'transform 0.2s',
         border: '1px solid #ececec',
         display: 'flex',
