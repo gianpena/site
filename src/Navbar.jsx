@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import github from '../public/github.svg';
 import linkedin from '../public/linkedin.svg';
 import logo from '../public/logo.png';
@@ -6,6 +7,9 @@ import './Logos.css';
 export function Navbar() {
 
     const sections = ['Projects', 'About Me'];
+    const sectionMap = {
+        'Projects': '/projects',
+        'About Me': '/about'};
 
     return (
         <div style={{
@@ -34,12 +38,18 @@ export function Navbar() {
                 margin: '0 16px'
             }} />
             {sections.map((section, index) => (
-                <div className="navbar-section playfair-display" style={{
-                    color: '#000',
-                    paddingLeft: index ? '10px' : '0px'
-                }}>
+                <Link
+                    key={section}
+                    to={sectionMap[section]}
+                    className="navbar-section playfair-display"
+                    style={{
+                        color: '#000',
+                        textDecoration: 'none',
+                        paddingLeft: index ? '10px' : '0px'
+                    }}
+                >
                     {section}
-                </div>
+                </Link>
             ))}
             <div style={{
                 width: '40px',
