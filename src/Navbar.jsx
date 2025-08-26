@@ -51,19 +51,23 @@ export function Navbar() {
                     {section}
                 </Link>
             ))}
-            <div style={{
-                width: '40px',
-                height: '40px',
-                backgroundColor: '#000',
-                borderRadius: '30%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'absolute',
-                right: '20px'
-            }}>
+            <Link
+                key="Home"
+                to="/"
+                style={{
+                    width: '40px',
+                    height: '40px',
+                    backgroundColor: '#000',
+                    borderRadius: '30%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'absolute',
+                    right: '20px'
+                }}
+            >
                 <img src={logo} alt="Logo" style={{ width: '24px', height: '24px', paddingBottom: '2px' }} />
-            </div>
+            </Link>
         </div>
     );
 }
