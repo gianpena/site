@@ -12,6 +12,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 443,
+    host: true,
     https: {
       key: fs.readFileSync(keyPath),
       cert: fs.readFileSync(certPath),
