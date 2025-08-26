@@ -1,28 +1,31 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './Navbar';
+import { AboutMe } from './sections/AboutMe';
+import { Projects } from './sections/Projects';
 import './App.css';
 
-const generateRandomInt = () => {
-  return Math.floor(Math.random() * 20) + 1;
-};
+const LandingPage = () => {
+  return (
+    <div className="center-content">
+      <h1 className="playfair-display italic">
+        Yowza!
+      </h1>
+      <h2 className="playfair-display">
+        Things will eventually go here.
+      </h2>
+    </div>
+  );
+}
 
 function App() {
   return (
     <BrowserRouter>
-      <div>
-        <Navbar />
-        <div className="center-content">
-          <h1 className="playfair-display italic">
-            Yowza!
-          </h1>
-          <h2 className="playfair-display">
-            Things will eventually go here.
-          </h2>
-        </div>
-      </div>
+      <Navbar />
+      
       <Routes>
-        <Route path="/projects" element={null} />
-        <Route path='/about' element={null} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path='/about' element={<AboutMe />} />
+        <Route path='/' element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   )
