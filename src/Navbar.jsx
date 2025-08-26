@@ -23,6 +23,13 @@ export function Navbar() {
             <a href="https://linkedin.com/in/gian-pena" target="_blank" rel="noopener noreferrer">
                 <img className="logo-style" src={linkedin} alt="LinkedIn"/>
             </a>
+            <span style={{
+                display: 'inline-block',
+                width: '4px',
+                height: '32px',
+                backgroundColor: '#787878',
+                margin: '0 16px'
+            }} />
             <div style={{
                 width: '40px',
                 height: '40px',
