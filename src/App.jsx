@@ -10,7 +10,7 @@ const LandingPage = () => {
         color: '#ffffff'
     }}>
       <h1 className="playfair-display italic">
-        Yowza!
+          “You can lead a crafter to diamonds, but you can’t make him mine.”
       </h1>
       <h2 className="playfair-display">
         Things will eventually go here.
