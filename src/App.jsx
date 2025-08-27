@@ -6,7 +6,9 @@ import './App.css';
 
 const LandingPage = () => {
   return (
-    <div className="center-content">
+    <div className="center-content" style={{
+        color: '#ffffff'
+    }}>
       <h1 className="playfair-display italic">
         Yowza!
       </h1>

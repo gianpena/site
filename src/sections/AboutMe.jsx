@@ -2,7 +2,9 @@ import '../App.css';
 
 export function AboutMe() {
     return (
-        <div className="center-content">
+        <div className="center-content" style={{
+            color: '#ffffff'
+        }}>
             <h1 className="playfair-display">
                 Who am I?
             </h1>
@@ -11,11 +13,8 @@ export function AboutMe() {
                 textAlign: 'center',
                 fontSize: '18px',
                 lineHeight: '1.6',
-                color: '#333'
             }}>
-                <div className="playfair-display" style={{
-                    color: '#ffffff'
-                }}>
+                <div className="playfair-display">
                     I'm Gian Peña, a student at Florida International University's 
                     College of Engineering and Computing. I'm a competitive programmer, 
                     and the current "captain" of FIU's ICPC team. I also love speedtyping
