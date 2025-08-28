@@ -81,7 +81,7 @@ export function SpeedTyping() {
           <h1 className="playfair-display" style={{
               color: '#ffffff', 
               fontSize: '2.5rem',
-              margin: '0 0 100px 0'  // Controlled margin
+              margin: '0 0 100px 0'
           }}>
               My speedtyping "career" in summary
           </h1>
