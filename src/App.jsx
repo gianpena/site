@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { AboutMe } from './sections/AboutMe';
 import { Projects } from './sections/Projects';
+import { SpeedTyping } from './sections/SpeedTyping';
 import './App.css';
 
 const LandingPage = () => {
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/projects" element={<Projects />} />
         <Route path='/about' element={<AboutMe />} />
+        <Route path='/speedtyping' element={<SpeedTyping />} />
         <Route path='/' element={<LandingPage />} />
       </Routes>
     </BrowserRouter>

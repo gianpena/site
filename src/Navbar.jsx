@@ -6,10 +6,11 @@ import './Logos.css';
 
 export function Navbar() {
 
-    const sections = ['Projects', 'About Me'];
+    const sections = ['Projects', 'About Me', 'Speedtyping'];
     const sectionMap = {
         'Projects': '/projects',
-        'About Me': '/about'};
+        'About Me': '/about',
+        'Speedtyping': '/speedtyping'};
 
     return (
         <div style={{
