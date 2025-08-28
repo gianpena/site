@@ -23,7 +23,7 @@ export function AboutMe() {
                 </div>
             </p>
             <div align="center" style={{ marginTop: '50px' }}>
-                <img src="https://leetcard.jacoblin.cool/gpena1?theme=unicorn&font=PT%20Mono" alt="LeetCode Stats" />
+                <img src="https://leetcard.jacoblin.cool/gpena1?theme=nord&font=Cairo" alt="LeetCode Stats" />
             </div>
         </div>
     );
