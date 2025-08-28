@@ -22,6 +22,9 @@ export function AboutMe() {
                     video games. Thanks for stopping by!
                 </div>
             </p>
+            <div align="center" style={{ marginTop: '50px' }}>
+                <img src="https://leetcard.jacoblin.cool/gpena1?theme=unicorn&font=PT%20Mono" alt="LeetCode Stats" />
+            </div>
         </div>
     );
 }
