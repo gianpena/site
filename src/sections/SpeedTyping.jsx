@@ -21,7 +21,7 @@ function StatsCard({website, statisticName, statistic}) {
           }}
         >
           <h3
-            className="playfair-display"
+            className="general-site-font"
             style={{
               margin: '0 0 12px 0',
               fontSize: '1.6rem',
@@ -30,7 +30,7 @@ function StatsCard({website, statisticName, statistic}) {
           >
             {website}
           </h3>
-          <p className="playfair-display" style={{ margin: '0 0 16px 0', color: '#555' }}>{statisticName}: {statistic}</p>
+          <p className="general-site-font" style={{ margin: '0 0 16px 0', color: '#555' }}>{statisticName}: {statistic}</p>
         </div>
       );   
 }
@@ -78,7 +78,7 @@ export function SpeedTyping() {
 
     return (
       <div className="center-content" style={{ textAlign: 'center' }}>
-          <h1 className="playfair-display" style={{
+          <h1 className="general-site-font" style={{
               color: '#ffffff', 
               fontSize: '2.5rem',
               margin: '0 0 100px 0'

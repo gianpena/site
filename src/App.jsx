@@ -10,10 +10,10 @@ const LandingPage = () => {
     <div className="center-content" style={{
         color: '#ffffff'
     }}>
-      <h1 className="playfair-display italic">
+      <h1 className="general-site-font italic">
           “You can lead a crafter to diamonds, but you can’t make him mine.”
       </h1>
-      <h2 className="playfair-display">
+      <h2 className="general-site-font">
         Things will eventually go here.
       </h2>
     </div>

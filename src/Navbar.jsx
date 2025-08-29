@@ -42,7 +42,7 @@ export function Navbar() {
                 <Link
                     key={section}
                     to={sectionMap[section]}
-                    className="navbar-section playfair-display"
+                    className="navbar-section general-site-font"
                     style={{
                         color: '#000',
                         textDecoration: 'none',
