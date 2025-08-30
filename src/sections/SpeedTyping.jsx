@@ -36,9 +36,9 @@ function StatsCard({website, statisticName, statistic}) {
 }
 
 export function SpeedTyping() {
-    const [textBests, setTextBests] = useState(undefined);
-    const [monkeytypetime60, setMonkeytypetime60] = useState(undefined);
-    const [monkeytypetime15, setMonkeytypetime15] = useState(undefined);
+    const [textBests, setTextBests] = useState('Loading...');
+    const [monkeytypetime60, setMonkeytypetime60] = useState('Loading...');
+    const [monkeytypetime15, setMonkeytypetime15] = useState('Loading...');
 
     const monkeytypeRequest60 = useCallback(async () => {
       try {
