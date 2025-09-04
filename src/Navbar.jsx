@@ -12,6 +12,8 @@ export function Navbar() {
         'About Me': '/about',
         'Speedtyping': '/speedtyping'};
 
+    const sectionsOnRight = [{content: 'Contact Me!', link: 'mailto:flaconumero2@gmail.com'}];
+
     return (
         <div style={{
             width: '100%',
@@ -52,6 +54,18 @@ export function Navbar() {
                     {section}
                 </Link>
             ))}
+            {sectionsOnRight.map(section => (
+
+                    <a href={section.link} key={section.content} className='general-site-font navbar-section' style={{
+                             color: '#000',
+                             right: '80px',
+                             position: 'absolute'
+                         }}>
+                        {section.content}
+                    </a>
+
+                ))
+            }
             <Link
                 key="Home"
                 to="/"
