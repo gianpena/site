@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
-import github from '../public/github.svg';
-import linkedin from '../public/linkedin.svg';
-import logo from '../public/logo.png';
+import github from './github.svg';
+import linkedin from './linkedin.svg';
+import logo from './logo.png';
 import './Logos.css';
 
 export function Navbar() {
