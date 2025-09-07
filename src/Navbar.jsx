@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 import github from './github.svg';
 import linkedin from './linkedin.svg';
 import logo from './logo.png';
+import discord from './discord.svg';
+import instagram from './instagram.svg';
 import './Logos.css';
 
 export function Navbar() {
 
     const [ isModalOpen, setIsOpen ] = useState(false);
     const sections = ['Projects', 'About Me', 'Speedtyping'];
+    const contacts = [{source: discord, content: 'marcolepsi.'}, {source: instagram, content: 'gian.pena1'}];
     const sectionMap = {
         'Projects': '/projects',
         'About Me': '/about',
@@ -79,16 +82,52 @@ export function Navbar() {
                         right: 'auto',
                         bottom: 'auto',
                         transform: 'translate(-50%, -50%)',
-                        width: '400px',        // Set fixed width
-                        height: '300px',       // Set fixed height
+                        width: '400px',
+                        height: '300px',
                         padding: '20px',
-                        color: '#000'
+                        color: '#000',
+                        display: 'flex',           // Add this
+                        alignItems: 'center',      // Vertically center
+                        justifyContent: 'center'   // Horizontally center (redundant but ensures centering)
                     }
                 }}
             >
-                <div className="general-site-font">
-                    hello
-                </div>
+                <div style={{
+                         display: 'flex',
+                         flexDirection: 'column',
+                         alignItems: 'center',
+                         gap: '20px'  // Space between title and socials
+                     }}>
+                         <div className="general-site-font">
+                             These are the socials I tend to check more frequently, so don't hesitate to reach out if you wanna talk!
+                         </div>
+                         <div
+                             className="general-site-font"
+                             style={{
+                                 display: 'flex',
+                                 flexDirection: 'column',    // Stack contacts vertically
+                                 gap: '15px'                 // Space between each contact
+                             }}
+                         >
+                             {contacts.map(contact => (
+                                 <div
+                                     key={contact.id || contact.content}
+                                     className="general-site-font"
+                                     style={{
+                                         display: 'flex',
+                                         alignItems: 'center'
+                                     }}
+                                 >
+                                     <img className="logo-style" src={contact.source} alt={contact.content}/>
+                                     <div style={{
+                                         paddingLeft: '10px'
+                                     }}>
+                                         {contact.content}
+                                     </div>
+                                 </div>
+                             ))}
+                         </div>
+                     </div>
             </Modal>
             <Link
                 key="Home"
