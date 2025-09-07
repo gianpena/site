@@ -86,48 +86,74 @@ export function Navbar() {
                         height: '300px',
                         padding: '20px',
                         color: '#000',
-                        display: 'flex',           // Add this
-                        alignItems: 'center',      // Vertically center
-                        justifyContent: 'center'   // Horizontally center (redundant but ensures centering)
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        position: 'relative'  // Add this for absolute positioning of close button
                     }
                 }}
             >
+                <button
+                    onClick={() => setIsOpen(false)}
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '10px',
+                        background: 'none',
+                        border: 'none',
+                        fontSize: '20px',
+                        cursor: 'pointer',
+                        color: '#666',
+                        padding: '5px',
+                        lineHeight: '1',
+                        width: '30px',
+                        height: '30px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                    onMouseEnter={(e) => e.target.style.color = '#000'}
+                    onMouseLeave={(e) => e.target.style.color = '#666'}
+                >
+                    ×
+                </button>
+
                 <div style={{
-                         display: 'flex',
-                         flexDirection: 'column',
-                         alignItems: 'center',
-                         gap: '20px'  // Space between title and socials
-                     }}>
-                         <div className="general-site-font">
-                             These are the socials I tend to check more frequently, so don't hesitate to reach out if you wanna talk!
-                         </div>
-                         <div
-                             className="general-site-font"
-                             style={{
-                                 display: 'flex',
-                                 flexDirection: 'column',    // Stack contacts vertically
-                                 gap: '15px'                 // Space between each contact
-                             }}
-                         >
-                             {contacts.map(contact => (
-                                 <div
-                                     key={contact.id || contact.content}
-                                     className="general-site-font"
-                                     style={{
-                                         display: 'flex',
-                                         alignItems: 'center'
-                                     }}
-                                 >
-                                     <img className="logo-style" src={contact.source} alt={contact.content}/>
-                                     <div style={{
-                                         paddingLeft: '10px'
-                                     }}>
-                                         {contact.content}
-                                     </div>
-                                 </div>
-                             ))}
-                         </div>
-                     </div>
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '20px'
+                }}>
+                    <div className="general-site-font">
+                        These are the socials I tend to check more frequently, so don't hesitate to reach out if you wanna talk!
+                    </div>
+                    <div
+                        className="general-site-font"
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '15px'
+                        }}
+                    >
+                        {contacts.map(contact => (
+                            <div
+                                key={contact.id || contact.content}
+                                className="general-site-font"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <img className="logo-style" src={contact.source} alt={contact.content}/>
+                                <div style={{
+                                    paddingLeft: '10px'
+                                }}>
+                                    {contact.content}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </Modal>
             <Link
                 key="Home"
