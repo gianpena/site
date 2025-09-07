@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import github from '../public/github.svg';
 import linkedin from '../public/linkedin.svg';
@@ -6,13 +8,12 @@ import './Logos.css';
 
 export function Navbar() {
 
+    const [ isModalOpen, setIsOpen ] = useState(false);
     const sections = ['Projects', 'About Me', 'Speedtyping'];
     const sectionMap = {
         'Projects': '/projects',
         'About Me': '/about',
         'Speedtyping': '/speedtyping'};
-
-    const sectionsOnRight = [{content: 'Contact Me!', link: 'mailto:flaconumero2@gmail.com'}];
 
     return (
         <div style={{
@@ -54,18 +55,34 @@ export function Navbar() {
                     {section}
                 </Link>
             ))}
-            {sectionsOnRight.map(section => (
-
-                    <a href={section.link} key={section.content} className='general-site-font navbar-section' style={{
-                             color: '#000',
-                             right: '80px',
-                             position: 'absolute'
-                         }}>
-                        {section.content}
-                    </a>
-
-                ))
-            }
+            <button onClick={() => setIsOpen(true)} style={{ marginLeft: '10px' }}>
+                Open Modal
+            </button>
+            <Modal
+                isOpen={isModalOpen}
+                onRequestClose={() => setIsOpen(false)}
+                contentLabel="test"
+                style={{
+                    overlay: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+                    },
+                    content: {
+                        top: '50%',
+                        left: '50%',
+                        right: 'auto',
+                        bottom: 'auto',
+                        transform: 'translate(-50%, -50%)',
+                        width: '400px',        // Set fixed width
+                        height: '300px',       // Set fixed height
+                        padding: '20px',
+                        color: '#000'
+                    }
+                }}
+            >
+                <div className="general-site-font">
+                    hello
+                </div>
+            </Modal>
             <Link
                 key="Home"
                 to="/"
