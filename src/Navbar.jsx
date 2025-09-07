@@ -55,9 +55,16 @@ export function Navbar() {
                     {section}
                 </Link>
             ))}
-            <button onClick={() => setIsOpen(true)} style={{ marginLeft: '10px' }}>
-                Open Modal
-            </button>
+            <div className="general-site-font navbar-section"
+                 style={{
+                     color: '#000',
+                     right: '80px',
+                     position: 'absolute'
+                }}
+                 onClick={() => {setIsOpen(true)}}
+            >
+                Contact me!
+            </div>
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={() => setIsOpen(false)}

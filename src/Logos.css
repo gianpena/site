@@ -6,6 +6,7 @@
 
 .navbar-section:hover {
     font-weight:bold;
+    cursor: pointer
 }
 
 .general-site-font{
