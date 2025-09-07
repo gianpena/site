@@ -1,18 +1,22 @@
+import { useState } from 'react';
+import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
-import github from '../public/github.svg';
-import linkedin from '../public/linkedin.svg';
-import logo from '../public/logo.png';
+import github from './github.svg';
+import linkedin from './linkedin.svg';
+import logo from './logo.png';
+import discord from './discord.svg';
+import instagram from './instagram.svg';
 import './Logos.css';
 
 export function Navbar() {
 
+    const [ isModalOpen, setIsOpen ] = useState(false);
     const sections = ['Projects', 'About Me', 'Speedtyping'];
+    const contacts = [{source: discord, content: 'marcolepsi.'}, {source: instagram, content: 'gian.pena1'}];
     const sectionMap = {
         'Projects': '/projects',
         'About Me': '/about',
         'Speedtyping': '/speedtyping'};
-
-    const sectionsOnRight = [{content: 'Contact Me!', link: 'mailto:flaconumero2@gmail.com'}];
 
     return (
         <div style={{
@@ -54,18 +58,77 @@ export function Navbar() {
                     {section}
                 </Link>
             ))}
-            {sectionsOnRight.map(section => (
-
-                    <a href={section.link} key={section.content} className='general-site-font navbar-section' style={{
-                             color: '#000',
-                             right: '80px',
-                             position: 'absolute'
-                         }}>
-                        {section.content}
-                    </a>
-
-                ))
-            }
+            <div className="general-site-font navbar-section"
+                 style={{
+                     color: '#000',
+                     right: '80px',
+                     position: 'absolute'
+                }}
+                 onClick={() => {setIsOpen(true)}}
+            >
+                Contact me!
+            </div>
+            <Modal
+                isOpen={isModalOpen}
+                onRequestClose={() => setIsOpen(false)}
+                contentLabel="test"
+                style={{
+                    overlay: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+                    },
+                    content: {
+                        top: '50%',
+                        left: '50%',
+                        right: 'auto',
+                        bottom: 'auto',
+                        transform: 'translate(-50%, -50%)',
+                        width: '400px',
+                        height: '300px',
+                        padding: '20px',
+                        color: '#000',
+                        display: 'flex',           // Add this
+                        alignItems: 'center',      // Vertically center
+                        justifyContent: 'center'   // Horizontally center (redundant but ensures centering)
+                    }
+                }}
+            >
+                <div style={{
+                         display: 'flex',
+                         flexDirection: 'column',
+                         alignItems: 'center',
+                         gap: '20px'  // Space between title and socials
+                     }}>
+                         <div className="general-site-font">
+                             These are the socials I tend to check more frequently, so don't hesitate to reach out if you wanna talk!
+                         </div>
+                         <div
+                             className="general-site-font"
+                             style={{
+                                 display: 'flex',
+                                 flexDirection: 'column',    // Stack contacts vertically
+                                 gap: '15px'                 // Space between each contact
+                             }}
+                         >
+                             {contacts.map(contact => (
+                                 <div
+                                     key={contact.id || contact.content}
+                                     className="general-site-font"
+                                     style={{
+                                         display: 'flex',
+                                         alignItems: 'center'
+                                     }}
+                                 >
+                                     <img className="logo-style" src={contact.source} alt={contact.content}/>
+                                     <div style={{
+                                         paddingLeft: '10px'
+                                     }}>
+                                         {contact.content}
+                                     </div>
+                                 </div>
+                             ))}
+                         </div>
+                     </div>
+            </Modal>
             <Link
                 key="Home"
                 to="/"
