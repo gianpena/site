@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UsernameContext } from "./UsernameContext.js";
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import github from './github.svg';
@@ -11,8 +12,9 @@ import './Logos.css';
 export function Navbar() {
 
     const [ isModalOpen, setIsOpen ] = useState(false);
+    const discordUsername = useContext(UsernameContext);
     const sections = ['Projects', 'About Me', 'Speedtyping'];
-    const contacts = [{source: discord, content: 'marcolepsi.'}, {source: instagram, content: 'gian.pena1'}];
+    const contacts = [{source: discord, content: discordUsername}, {source: instagram, content: 'gian.pena1'}];
     const sectionMap = {
         'Projects': '/projects',
         'About Me': '/about',
