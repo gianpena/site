@@ -42,7 +42,7 @@ export function SpeedTyping() {
 
     const monkeytypeRequest60 = useCallback(async () => {
       try {
-          const monkeytype_time60_response = await fetch('https://api.gianpena.xyz:3001/monkeytype/60');
+          const monkeytype_time60_response = await fetch('https://api.gianpena.xyz/monkeytype/60');
           const monkeytype_time60_json = await monkeytype_time60_response.json();
           setMonkeytypetime60(monkeytype_time60_json.stats);
       } catch (e) {
@@ -52,7 +52,7 @@ export function SpeedTyping() {
 
     const monkeytypeRequest15 = useCallback(async () => {
       try {
-        const monkeytype_time15_response = await fetch('https://api.gianpena.xyz:3001/monkeytype/15');
+        const monkeytype_time15_response = await fetch('https://api.gianpena.xyz/monkeytype/15');
         const monkeytype_time15_json = await monkeytype_time15_response.json();
         setMonkeytypetime15(monkeytype_time15_json.stats);
       } catch (e) {
@@ -62,7 +62,7 @@ export function SpeedTyping() {
 
     const typeracerRequest = useCallback(async () => {
       try {
-          const typeracer_response = await fetch('https://api.gianpena.xyz:3001/typeracer');
+          const typeracer_response = await fetch('https://api.gianpena.xyz/typeracer');
           const typeracer_json = await typeracer_response.json();
           setTextBests(typeracer_json.stats);
       } catch (e) {

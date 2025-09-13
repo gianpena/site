@@ -26,7 +26,7 @@ function App() {
   const [discordUsername, setDiscordUsername] = useState('');
   useEffect(() => {
     async function getUsername() {
-      const response = await fetch('https://api.gianpena.xyz:3001/username');
+      const response = await fetch('https://api.gianpena.xyz/username');
       const json = await response.json();
       return json.username;
     }
