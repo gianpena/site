@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { UsernameContext } from "./UsernameContext.js";
+import { Menu } from '@headlessui/react'
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import github from './github.svg';
@@ -12,26 +13,23 @@ import './Logos.css';
 const THRESHOLD = 640;
 
 function SectionsDropdown({ sections, links }) {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
     return (
-      <div style={{ position: 'relative', display: 'inline-block' }}>
-        <button
-          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="general-site-font navbar-section"
-          style={{
-            backgroundColor: 'transparent',
-            border: 'none',
-            color: '#000',
-            cursor: 'pointer',
-            paddingLeft: '0px',
-            fontSize: 'inherit'
-          }}
-        >
-          Menu
-        </button>
+      <Menu as="div" style={{ position: 'relative', display: 'inline-block', marginLeft: '0px' }}>
+          <Menu.Button
+              className="general-site-font navbar-section"
+              style={{
+                backgroundColor: 'transparent',
+                border: 'none',
+                color: '#000',
+                cursor: 'pointer',
+                padding: '4px 6px',  // Reduced from '8px 12px'
+                fontSize: 'inherit'
+              }}
+            >
+              Menu
+            </Menu.Button>
 
-        <div style={{
+        <Menu.Items style={{
           position: 'absolute',
           top: '100%',
           left: '0',
@@ -41,30 +39,31 @@ function SectionsDropdown({ sections, links }) {
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
           zIndex: 1001,
           minWidth: '120px',
-          display: isDropdownOpen ? 'block' : 'none'
+          outline: 'none'
         }}>
-          {sections.map((section) => (
-            <Link
-              key={section}
-              to={links[section]}
-              className="general-site-font"
-              style={{
-                display: 'block',
-                padding: '10px 16px',
-                color: '#000',
-                textDecoration: 'none',
-                borderBottom: '1px solid #eee'
-              }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#f5f5f5'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-              onClick={() => setIsDropdownOpen(false)}
-            >
-              {section}
-            </Link>
+          {sections.map((section, index) => (
+            <Menu.Item key={section}>
+              {({ active }) => (
+                <Link
+                  to={links[section]}
+                  className="general-site-font"
+                  style={{
+                    display: 'block',
+                    padding: '10px 16px',
+                    color: '#000',
+                    textDecoration: 'none',
+                    borderBottom: index < sections.length - 1 ? '1px solid #eee' : 'none',
+                    backgroundColor: active ? '#f5f5f5' : 'transparent'
+                  }}
+                >
+                  {section}
+                </Link>
+              )}
+            </Menu.Item>
           ))}
-        </div>
-      </div>
-    );
+        </Menu.Items>
+      </Menu>
+    )
   }
 
 export function Navbar() {
