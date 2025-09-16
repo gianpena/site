@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { UsernameContext } from "./UsernameContext.js";
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
@@ -9,9 +9,68 @@ import discord from './discord.svg';
 import instagram from './instagram.svg';
 import './Logos.css';
 
+const THRESHOLD = 640;
+
+function SectionsDropdown({ sections, links }) {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    return (
+      <div style={{ position: 'relative', display: 'inline-block' }}>
+        <button
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          className="general-site-font navbar-section"
+          style={{
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: '#000',
+            cursor: 'pointer',
+            paddingLeft: '0px',
+            fontSize: 'inherit'
+          }}
+        >
+          Menu
+        </button>
+
+        <div style={{
+          position: 'absolute',
+          top: '100%',
+          left: '0',
+          backgroundColor: '#ffffff',
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+          zIndex: 1001,
+          minWidth: '120px',
+          display: isDropdownOpen ? 'block' : 'none'
+        }}>
+          {sections.map((section) => (
+            <Link
+              key={section}
+              to={links[section]}
+              className="general-site-font"
+              style={{
+                display: 'block',
+                padding: '10px 16px',
+                color: '#000',
+                textDecoration: 'none',
+                borderBottom: '1px solid #eee'
+              }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#f5f5f5'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+              onClick={() => setIsDropdownOpen(false)}
+            >
+              {section}
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
 export function Navbar() {
 
     const [ isModalOpen, setIsOpen ] = useState(false);
+    const [ widthBelowThreshold, setWidthBelowThreshold ] = useState(window.innerWidth <= THRESHOLD)
     const discordUsername = useContext(UsernameContext);
     const sections = ['Projects', 'About Me', 'Speedtyping'];
     const contacts = [{source: discord, content: discordUsername}, {source: instagram, content: 'gian.pena1'}];
@@ -19,6 +78,18 @@ export function Navbar() {
         'Projects': '/projects',
         'About Me': '/about',
         'Speedtyping': '/speedtyping'};
+
+    useEffect(() => {
+        const handleResize = () => {
+          const width = window.innerWidth;
+            if(width <= THRESHOLD) setWidthBelowThreshold(true);
+            else setWidthBelowThreshold(false);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
 
     return (
         <div style={{
@@ -40,13 +111,13 @@ export function Navbar() {
                 <img className="logo-style" src={linkedin} alt="LinkedIn"/>
             </a>
             <span style={{
-                display: 'inline-block',
-                width: '4px',
-                height: '32px',
-                backgroundColor: '#787878',
-                margin: '0 16px'
-            }} />
-            {sections.map((section, index) => (
+                      display: 'inline-block',
+                      width: '4px',
+                      height: '32px',
+                      backgroundColor: '#787878',
+                      margin: '0 16px'
+                  }} />
+            {!widthBelowThreshold && sections.map((section, index) => (
                 <Link
                     key={section}
                     to={sectionMap[section]}
@@ -60,6 +131,9 @@ export function Navbar() {
                     {section}
                 </Link>
             ))}
+            {widthBelowThreshold && (
+                <SectionsDropdown sections={sections} links={sectionMap}/>
+            )}
             <div className="general-site-font navbar-section"
                  style={{
                      color: '#000',
