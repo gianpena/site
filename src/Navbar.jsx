@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { UsernameContext } from "./UsernameContext.js";
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
@@ -9,9 +9,11 @@ import discord from './discord.svg';
 import instagram from './instagram.svg';
 import './Logos.css';
 
+const THRESHOLD = 640;
 export function Navbar() {
 
     const [ isModalOpen, setIsOpen ] = useState(false);
+    const [ widthBelowThreshold, setWidthBelowThreshold ] = useState(window.innerWidth <= THRESHOLD)
     const discordUsername = useContext(UsernameContext);
     const sections = ['Projects', 'About Me', 'Speedtyping'];
     const contacts = [{source: discord, content: discordUsername}, {source: instagram, content: 'gian.pena1'}];
@@ -19,6 +21,18 @@ export function Navbar() {
         'Projects': '/projects',
         'About Me': '/about',
         'Speedtyping': '/speedtyping'};
+
+    useEffect(() => {
+        const handleResize = () => {
+          const width = window.innerWidth;
+            if(width <= THRESHOLD) setWidthBelowThreshold(true);
+            else setWidthBelowThreshold(false);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
 
     return (
         <div style={{
@@ -39,14 +53,16 @@ export function Navbar() {
             <a href="https://linkedin.com/in/gian-pena" target="_blank" rel="noopener noreferrer">
                 <img className="logo-style" src={linkedin} alt="LinkedIn"/>
             </a>
-            <span style={{
-                display: 'inline-block',
-                width: '4px',
-                height: '32px',
-                backgroundColor: '#787878',
-                margin: '0 16px'
-            }} />
-            {sections.map((section, index) => (
+            {!widthBelowThreshold && (
+                <span style={{
+                      display: 'inline-block',
+                      width: '4px',
+                      height: '32px',
+                      backgroundColor: '#787878',
+                      margin: '0 16px'
+                  }} />
+            )}
+            {!widthBelowThreshold && sections.map((section, index) => (
                 <Link
                     key={section}
                     to={sectionMap[section]}
