@@ -3,18 +3,20 @@ import './App.css';
 export function ProjectCard({ title, description, link }) {
     return (
       <div
-        className="project-card"
+        className="stats-card"
         style={{
           background: '#fff',
           borderRadius: '16px',
           boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
           padding: '24px',
-          margin: '16px 0',
+          margin: '0 0 16px 0',
           transition: 'transform 0.2s',
           border: '1px solid #ececec',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
+          width: '100%',
+          maxWidth: '400px',
         }}
       >
         <h3
