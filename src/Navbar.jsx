@@ -22,7 +22,7 @@ function SectionsDropdown({ sections, links }) {
                 border: 'none',
                 color: '#000',
                 cursor: 'pointer',
-                padding: '4px 6px',  // Reduced from '8px 12px'
+                padding: '4px 6px',
                 fontSize: 'inherit'
               }}
             >
@@ -157,14 +157,14 @@ export function Navbar() {
                         right: 'auto',
                         bottom: 'auto',
                         transform: 'translate(-50%, -50%)',
-                        width: '400px',
+                        width: '300px',
                         height: '300px',
                         padding: '20px',
                         color: '#000',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        position: 'relative'  // Add this for absolute positioning of close button
+                        position: 'relative'
                     }
                 }}
             >
