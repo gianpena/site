@@ -3,7 +3,7 @@ import './App.css';
 export function ProjectCard({ title, description, link }) {
     return (
       <div
-        className="stats-card"
+        className="project-card"
         style={{
           background: '#fff',
           borderRadius: '16px',
@@ -15,7 +15,7 @@ export function ProjectCard({ title, description, link }) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          width: '100%',
+          width: '80%',
           maxWidth: '400px',
         }}
       >
