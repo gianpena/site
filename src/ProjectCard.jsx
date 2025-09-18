@@ -3,7 +3,7 @@ import './App.css';
 export function ProjectCard({ title, description, link }) {
     return (
       <div
-        className="stats-card"
+        className="project-card"
         style={{
           background: '#fff',
           borderRadius: '16px',
