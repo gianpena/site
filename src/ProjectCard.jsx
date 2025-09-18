@@ -15,7 +15,7 @@ export function ProjectCard({ title, description, link }) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          width: '100%',
+          width: '80%',
           maxWidth: '400px',
         }}
       >
