@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import '../App.css';
 
 export function AboutMe() {
+    const [statsCardMessage, setStatsCardMessage] = useState('Loading LeetCode stats card...');
+
     return (
         <div className="center-content" style={{
             color: '#ffffff'
@@ -22,8 +25,22 @@ export function AboutMe() {
                     video games. Thanks for stopping by!
                 </div>
             </p>
+            {statsCardMessage && (
+                <div className="general-site-font" style={{
+                         color: '#fff',
+                         fontStyle: 'italic',
+                         minHeight: '200px',
+                         display: 'flex',
+                         alignItems: 'center',
+                         justifyContent: 'center'
+                     }}>
+                    {statsCardMessage}
+                     </div>
+            )}
             <div align="center" style={{ marginTop: '50px' }}>
-                <img src="https://leetcard.jacoblin.cool/gpena1?theme=nord&font=Cairo" alt="LeetCode Stats" />
+                <img src="https://leetcard.jacoblin.cool/gpena1?theme=nord&font=Cairo" alt="LeetCode Stats"
+                onLoad={() => {setStatsCardMessage('');}}
+                onError={() => {setStatsCardMessage('Error fetching LeetCode stats. Try again later!');}} />
             </div>
         </div>
     );
