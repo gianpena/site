@@ -1,8 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import '../App.css';
 
 export function AboutMe() {
     const [statsCardMessage, setStatsCardMessage] = useState('Loading LeetCode stats card...');
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const intervalId = useRef(-1);
+    const counter = useRef(0);
+
+    const messageHandler = useCallback(() => {
+        if(!imageLoaded && intervalId.current === -1) {
+            intervalId.current = setInterval(() => {
+                setStatsCardMessage(`Loading LeetCode stats card${".".repeat(counter.current+1)}`);
+                counter.current = (counter.current + 1) % 3;
+            }, 250);
+        } else if (imageLoaded && intervalId.current !== -1) {
+            clearInterval(intervalId.current);
+            intervalId.current = -1;
+        }
+    }, [imageLoaded]);
+
+    useEffect(() => {
+        messageHandler();
+        return messageHandler;
+    }, [messageHandler]);
+    const handleImageLoad = () => {
+        setImageLoaded(true);
+        setStatsCardMessage('');
+    };
+    const handleImageError = () => {
+        setImageLoaded(true);
+        setStatsCardMessage('Error fetching LeetCode stats. Try again later!');
+    };
 
     return (
         <div className="center-content" style={{
@@ -39,8 +67,8 @@ export function AboutMe() {
             )}
             <div align="center" style={{ marginTop: '50px' }}>
                 <img src="https://leetcard.jacoblin.cool/gpena1?theme=nord&font=Cairo" alt="LeetCode Stats"
-                onLoad={() => {setStatsCardMessage('');}}
-                onError={() => {setStatsCardMessage('Error fetching LeetCode stats. Try again later!');}} />
+                onLoad={handleImageLoad}
+                onError={handleImageError} />
             </div>
         </div>
     );
