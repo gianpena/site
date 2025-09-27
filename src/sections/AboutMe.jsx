@@ -4,6 +4,13 @@ import '../App.css';
 export function AboutMe() {
     const [statsCardMessage, setStatsCardMessage] = useState('Loading LeetCode stats card...');
 
+    const handleImageLoad = () => {
+        setStatsCardMessage('');
+    };
+    const handleImageError = () => {
+        setStatsCardMessage('Error fetching LeetCode stats. Try again later!');
+    };
+
     return (
         <div className="center-content" style={{
             color: '#ffffff'
@@ -39,8 +46,8 @@ export function AboutMe() {
             )}
             <div align="center" style={{ marginTop: '50px' }}>
                 <img src="https://leetcard.jacoblin.cool/gpena1?theme=nord&font=Cairo" alt="LeetCode Stats"
-                onLoad={() => {setStatsCardMessage('');}}
-                onError={() => {setStatsCardMessage('Error fetching LeetCode stats. Try again later!');}} />
+                onLoad={handleImageLoad}
+                onError={handleImageError} />
             </div>
         </div>
     );
