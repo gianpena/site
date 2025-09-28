@@ -28,7 +28,6 @@ export function AboutMe() {
         setStatsCardMessage('');
     };
     const handleImageError = () => {
-        setImageLoaded(true);
         setStatsCardMessage('Error fetching LeetCode stats. Try again later!');
     };
 
