@@ -61,9 +61,9 @@ export function SpeedTyping() {
               gap: '8px',
               alignItems: 'center',
           }}>
-              <StatsCard website="Monkeytype (time60)" statisticName="WPM" statistic={monkeytypetime60} />
-              <StatsCard website="Monkeytype (time15)" statisticName="WPM" statistic={monkeytypetime15} />
-              <StatsCard website="Typeracer" statisticName="Average best wpm (all quotes)" statistic={textBests} />
+              <StatsCard website="Monkeytype (time60)" statisticName="WPM" statistic={monkeytypetime60} link="https://monkeytype.com/profile/poop_goblin" />
+              <StatsCard website="Monkeytype (time15)" statisticName="WPM" statistic={monkeytypetime15} link="https://monkeytype.com/profile/poop_goblin" />
+              <StatsCard website="Typeracer" statisticName="Average best wpm (all quotes)" statistic={textBests} link="https://www.typeracerdata.com/profile?username=gianthetaco" />
           </div>
       </div>
     );

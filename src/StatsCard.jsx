@@ -1,5 +1,5 @@
 import './App.css'
-export function StatsCard({website, statisticName, statistic}) {
+export function StatsCard({website, statisticName, statistic, link}) {
     return (
         <div
           className="stats-card"
@@ -26,7 +26,12 @@ export function StatsCard({website, statisticName, statistic}) {
               color: '#222',
             }}
           >
-            {website}
+            {link && (
+              <a target="_blank" href={link}>{website}</a>
+            )}
+            {!link && (
+              <div>{website}</div>
+            )}
           </h3>
           <p className="general-site-font" style={{ margin: '0 0 16px 0', color: '#555' }}>{statisticName}: {statistic}</p>
         </div>
