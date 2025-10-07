@@ -6,12 +6,14 @@ export function SpeedTyping() {
     const [textBests, setTextBests] = useState('Loading...');
     const [monkeytypetime60, setMonkeytypetime60] = useState('Loading...');
     const [monkeytypetime15, setMonkeytypetime15] = useState('Loading...');
+    const [monkeytypeLink, setMonkeytypeLink] = useState('');
 
     const monkeytypeRequest60 = useCallback(async () => {
       try {
           const monkeytype_time60_response = await fetch('https://api.gianpena.xyz/monkeytype/60');
           const monkeytype_time60_json = await monkeytype_time60_response.json();
           setMonkeytypetime60(monkeytype_time60_json.stats);
+          setMonkeytypeLink(monkeytype_time60_json.link);
       } catch (e) {
           console.log('Error fetching monkeytype 60s data:', e);
       }
@@ -22,6 +24,7 @@ export function SpeedTyping() {
         const monkeytype_time15_response = await fetch('https://api.gianpena.xyz/monkeytype/15');
         const monkeytype_time15_json = await monkeytype_time15_response.json();
         setMonkeytypetime15(monkeytype_time15_json.stats);
+        setMonkeytypeLink(monkeytype_time15_json.link);
       } catch (e) {
           console.log('Error fetching monkeytype 15s data:', e);
       }
@@ -61,8 +64,8 @@ export function SpeedTyping() {
               gap: '8px',
               alignItems: 'center',
           }}>
-              <StatsCard website="Monkeytype (time60)" statisticName="WPM" statistic={monkeytypetime60} link="https://monkeytype.com/profile/poop_goblin" />
-              <StatsCard website="Monkeytype (time15)" statisticName="WPM" statistic={monkeytypetime15} link="https://monkeytype.com/profile/poop_goblin" />
+              <StatsCard website="Monkeytype (time60)" statisticName="WPM" statistic={monkeytypetime60} link={monkeytypeLink} />
+              <StatsCard website="Monkeytype (time15)" statisticName="WPM" statistic={monkeytypetime15} link={monkeytypeLink} />
               <StatsCard website="Typeracer" statisticName="Average best wpm (all quotes)" statistic={textBests} link="https://www.typeracerdata.com/profile?username=gianthetaco" />
           </div>
       </div>
