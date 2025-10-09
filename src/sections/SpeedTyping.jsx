@@ -66,7 +66,7 @@ export function SpeedTyping() {
           }}>
               <StatsCard website="Monkeytype (time60)" statisticName="WPM" statistic={monkeytypetime60} link={monkeytypeLink} />
               <StatsCard website="Monkeytype (time15)" statisticName="WPM" statistic={monkeytypetime15} link={monkeytypeLink} />
-              <StatsCard website="Typeracer" statisticName="Average best wpm (all quotes)" statistic={textBests} link="https://www.typeracerdata.com/profile?username=gianthetaco" />
+              <StatsCard website="Typeracer" statisticName="Average best wpm (all of my quotes)" statistic={textBests} link="https://www.typeracerdata.com/profile?username=gianthetaco" />
           </div>
       </div>
     );
