@@ -1,5 +1,5 @@
 import './App.css'
-export function StatsCard({website, statisticName, statistic, link}) {
+export function TypingStatsCard({website, statisticName, statistic, link}) {
     return (
         <div
           className="stats-card"

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import '../App.css';
-import { StatsCard } from "../StatsCard.jsx";
+import { TypingStatsCard } from '../TypingStatsCard';
 
 export function SpeedTyping() {
     const [textBests, setTextBests] = useState('Loading...');
@@ -64,9 +64,9 @@ export function SpeedTyping() {
               gap: '8px',
               alignItems: 'center',
           }}>
-              <StatsCard website="Monkeytype (time60)" statisticName="WPM" statistic={monkeytypetime60} link={monkeytypeLink} />
-              <StatsCard website="Monkeytype (time15)" statisticName="WPM" statistic={monkeytypetime15} link={monkeytypeLink} />
-              <StatsCard website="Typeracer" statisticName="Average best wpm (all of my quotes)" statistic={textBests} link="https://www.typeracerdata.com/profile?username=gianthetaco" />
+              <TypingStatsCard website="Monkeytype (time60)" statisticName="WPM" statistic={monkeytypetime60} link={monkeytypeLink} />
+              <TypingStatsCard website="Monkeytype (time15)" statisticName="WPM" statistic={monkeytypetime15} link={monkeytypeLink} />
+              <TypingStatsCard website="Typeracer" statisticName="Average best wpm (all of my quotes)" statistic={textBests} link="https://www.typeracerdata.com/profile?username=gianthetaco" />
           </div>
       </div>
     );
