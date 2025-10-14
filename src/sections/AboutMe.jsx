@@ -1,6 +1,5 @@
-import '../LeetCodeStatsCard';
 import '../App.css';
-import { LeetCodeStatsCard } from '../LeetCodeStatsCard';
+import { GeneralStatsCard } from '../GeneralStatsCard';
 
 export function AboutMe() {
 
@@ -25,7 +24,9 @@ export function AboutMe() {
                     video games. Thanks for stopping by!
                 </span>
             </p>
-            <LeetCodeStatsCard />
+            <GeneralStatsCard
+                link="https://leetcard.jacoblin.cool/gpena1?theme=nord&font=Cairo"
+                baseLoadingMessage="Loading LeetCode stats card" />
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-export function LeetCodeStatsCard() {
+export function GeneralStatsCard({ link, baseLoadingMessage }) {
   const statsCardMessage = useRef('Loading LeetCode stats card...');
   const [periods, setPeriods] = useState(2); // zero-based with +1 offset later
   const [imageResolved, setImageResolved] = useState(false);
@@ -17,7 +17,7 @@ export function LeetCodeStatsCard() {
     intervalId.current = setInterval(() => {
       setPeriods(p => {
         p = (p + 1) % 3;
-        statsCardMessage.current = `Loading LeetCode stats card${'.'.repeat(p+1)}`;
+        statsCardMessage.current = `${baseLoadingMessage}${'.'.repeat(p+1)}`;
         return p;
       });
   }, 250);
@@ -40,7 +40,7 @@ export function LeetCodeStatsCard() {
         </div>
       )}
       <div align="center" style={{ marginTop: '50px' }}>
-        <img src="https://leetcard.jacoblin.cool/gpena1?theme=nord&font=Cairo" alt="LeetCode Stats"
+        <img src={link} alt=""
         onLoad={() => {
           cleanup();
           setImageResolved(true);
