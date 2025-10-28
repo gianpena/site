@@ -8,7 +8,7 @@ import linkedin from "./linkedin.svg"
 import logo from "./logo.png"
 import discord from "./discord.svg"
 import instagram from "./instagram.svg"
-import "./Logos.css"
+import "./sections/Logos.css"
 
 const THRESHOLD = 640
 

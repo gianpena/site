@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 import "../App.css"
-import { TypingStatsCard } from "../TypingStatsCard"
+import { TypingStatsCard } from "./TypingStatsCard"
 
 export function SpeedTyping() {
   const [textBests, setTextBests] = useState("Loading...")

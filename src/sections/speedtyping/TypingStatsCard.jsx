@@ -1,4 +1,4 @@
-import "./App.css"
+import "../App.css"
 export function TypingStatsCard({ website, statisticName, statistic, link }) {
   return (
     <div
