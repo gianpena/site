@@ -1,5 +1,5 @@
 import "../App.css"
-import { ProjectCard } from "../ProjectCard"
+import { ProjectCard } from "./ProjectCard"
 
 export function Projects() {
   return (

@@ -1,5 +1,5 @@
 import "../App.css"
-import { GeneralStatsCard } from "../GeneralStatsCard"
+import { GeneralStatsCard } from "./GeneralStatsCard"
 
 export function AboutMe() {
   return (

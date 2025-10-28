@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"
 import { UsernameContext } from "./UsernameContext.js"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Navbar } from "./Navbar"
-import { AboutMe } from "./sections/AboutMe"
-import { Projects } from "./sections/Projects"
-import { SpeedTyping } from "./sections/SpeedTyping"
-import "./App.css"
+import { AboutMe } from "./sections/about/AboutMe"
+import { Projects } from "./sections/projects/Projects"
+import { SpeedTyping } from "./sections/speedtyping/SpeedTyping"
+import "./sections/App.css"
 
 const LandingPage = () => {
   return (
