@@ -6,6 +6,7 @@ export function SpeedTyping() {
   const [textBests, setTextBests] = useState("Loading...")
   const [monkeytypetime60, setMonkeytypetime60] = useState("Loading...")
   const [monkeytypetime15, setMonkeytypetime15] = useState("Loading...")
+  const [typeggWPM, setTypeggWPM] = useState("Loading...")
   const [monkeytypeLink, setMonkeytypeLink] = useState("")
 
   const monkeytypeRequest60 = useCallback(async () => {
@@ -46,10 +47,23 @@ export function SpeedTyping() {
     }
   }, [])
 
+  const typeggRequest = useCallback(async () => {
+    try {
+      const typegg_response = await fetch(
+        "https://api.gianpena.xyz/typegg"
+      )
+      const typegg_json = await typegg_response.json()
+      setTypeggWPM(typegg_json.nWPM);
+    } catch (e) {
+      console.log("Error fetching type.gg data:", e)
+    }
+  }, [])
+
   useEffect(() => {
     monkeytypeRequest60()
     monkeytypeRequest15()
     typeracerRequest()
+    typeggRequest()
   }, [])
 
   return (
@@ -92,6 +106,12 @@ export function SpeedTyping() {
           statisticName="Average best wpm (all of my quotes)"
           statistic={textBests}
           link="https://www.typeracerdata.com/profile?username=gianthetaco"
+        />
+        <TypingStatsCard
+          website="Type.GG"
+          statisticName="Normalized WPM"
+          statistic={typeggWPM}
+          link="https://typegg.io/user/gian"
         />
       </div>
     </div>
