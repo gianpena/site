@@ -15,7 +15,7 @@ export function Projects() {
         link="https://github.com/gianpena/site"
       />
       <div className="general-site-font" style={{ color: "#ffffff" }}>
-        I have more projects than just the ones listed above, but these are the
+        I have more projects than just the ones listed above, but these are (some of) the
         ones I can publicly share!
       </div>
     </div>
