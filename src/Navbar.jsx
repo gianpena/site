@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext, useEffect, createContext } from "react"
 import { UsernameContext } from "./UsernameContext.js"
 import { Menu } from "@headlessui/react"
 import Modal from "react-modal"
@@ -10,9 +10,12 @@ import discord from "./discord.svg"
 import instagram from "./instagram.svg"
 import "./sections/Logos.css"
 
-const THRESHOLD = 640
+const THRESHOLD = 640;
+const CurrentPageContext = createContext(null);
 
 function SectionsDropdown({ sections, links }) {
+  const { currentlySelectedPage, setCurrentlySelectedPage } = useContext(CurrentPageContext);
+
   return (
     <Menu
       as="div"
@@ -63,7 +66,14 @@ function SectionsDropdown({ sections, links }) {
                   textDecoration: "none",
                   borderBottom:
                     index < sections.length - 1 ? "1px solid #eee" : "none",
-                  backgroundColor: active ? "#f5f5f5" : "transparent"
+                  backgroundColor: active ? "#f5f5f5" : "transparent",
+                  ...(
+                    currentlySelectedPage === links[section]
+                      ? { fontWeight: "bold" } : {}
+                  )
+                }}
+                onClick={() => {
+                  setCurrentlySelectedPage(links[section]);
                 }}
               >
                 {section}
@@ -113,6 +123,7 @@ export function Navbar() {
   }, []);
 
   return (
+    <CurrentPageContext.Provider value={{currentlySelectedPage, setCurrentlySelectedPage}}>
     <div
       style={{
         width: "100%",
@@ -308,5 +319,6 @@ export function Navbar() {
         />
       </Link>
     </div>
+    </CurrentPageContext.Provider>
   );
 }
