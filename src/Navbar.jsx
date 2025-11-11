@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext, useEffect, createContext } from "react"
 import { UsernameContext } from "./UsernameContext.js"
 import { Menu } from "@headlessui/react"
 import Modal from "react-modal"
@@ -10,9 +10,12 @@ import discord from "./discord.svg"
 import instagram from "./instagram.svg"
 import "./sections/Logos.css"
 
-const THRESHOLD = 640
+const THRESHOLD = 640;
+const CurrentPageContext = createContext(null);
 
 function SectionsDropdown({ sections, links }) {
+  const { currentlySelectedPage, setCurrentlySelectedPage } = useContext(CurrentPageContext);
+
   return (
     <Menu
       as="div"
@@ -63,7 +66,14 @@ function SectionsDropdown({ sections, links }) {
                   textDecoration: "none",
                   borderBottom:
                     index < sections.length - 1 ? "1px solid #eee" : "none",
-                  backgroundColor: active ? "#f5f5f5" : "transparent"
+                  backgroundColor: active ? "#f5f5f5" : "transparent",
+                  ...(
+                    currentlySelectedPage === links[section]
+                      ? { fontWeight: "bold" } : {}
+                  )
+                }}
+                onClick={() => {
+                  setCurrentlySelectedPage(links[section]);
                 }}
               >
                 {section}
@@ -77,21 +87,22 @@ function SectionsDropdown({ sections, links }) {
 }
 
 export function Navbar() {
-  const [isModalOpen, setIsOpen] = useState(false)
+  const [isModalOpen, setIsOpen] = useState(false);
   const [widthBelowThreshold, setWidthBelowThreshold] = useState(
     window.innerWidth <= THRESHOLD
-  )
-  const discordUsername = useContext(UsernameContext)
-  const sections = ["Projects", "About Me", "Speedtyping"]
+  );
+  const discordUsername = useContext(UsernameContext);
+  const [currentlySelectedPage, setCurrentlySelectedPage] = useState(null);
+  const sections = ["Projects", "About Me", "Speedtyping"];
   const contacts = [
     { source: discord, content: discordUsername },
     { source: instagram, content: "gian.pena1" }
-  ]
+  ];
   const sectionMap = {
-    Projects: "/projects",
+    "Projects": "/projects",
     "About Me": "/about",
-    Speedtyping: "/speedtyping"
-  }
+    "Speedtyping": "/speedtyping"
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -100,12 +111,19 @@ export function Navbar() {
       else setWidthBelowThreshold(false)
     }
 
+    const path = window.location.pathname;
+    const page = Object.keys(sectionMap).find(
+      (key) => sectionMap[key] === path
+    )
+    setCurrentlySelectedPage(sectionMap[page] || null);
+
     handleResize()
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
-  }, [])
+  }, []);
 
   return (
+    <CurrentPageContext.Provider value={{currentlySelectedPage, setCurrentlySelectedPage}}>
     <div
       style={{
         width: "100%",
@@ -148,11 +166,17 @@ export function Navbar() {
           <Link
             key={section}
             to={sectionMap[section]}
-            className="navbar-section general-site-font"
+            className={`navbar-section general-site-font`}
             style={{
               color: "#000",
               textDecoration: "none",
-              paddingLeft: index ? "10px" : "0px"
+              paddingLeft: index ? "10px" : "0px",
+              ...(currentlySelectedPage === sectionMap[section] ?
+                { fontWeight: "bold" } : {}
+              )
+            }}
+            onClick={() => {
+              setCurrentlySelectedPage(sectionMap[section]);
             }}
           >
             {section}
@@ -284,6 +308,9 @@ export function Navbar() {
           position: "absolute",
           right: "20px"
         }}
+        onClick={() => {
+          setCurrentlySelectedPage(null);
+        }}
       >
         <img
           src={logo}
@@ -292,5 +319,6 @@ export function Navbar() {
         />
       </Link>
     </div>
-  )
+    </CurrentPageContext.Provider>
+  );
 }
