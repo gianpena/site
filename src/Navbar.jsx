@@ -156,7 +156,7 @@ export function Navbar() {
           <Link
             key={section}
             to={sectionMap[section]}
-            className={`navbar-section general-site-font ${currentlySelectedPage === section ? "selected" : ""}`}
+            className={`navbar-section general-site-font`}
             style={{
               color: "#000",
               textDecoration: "none",
