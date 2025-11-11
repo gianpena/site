@@ -77,21 +77,22 @@ function SectionsDropdown({ sections, links }) {
 }
 
 export function Navbar() {
-  const [isModalOpen, setIsOpen] = useState(false)
+  const [isModalOpen, setIsOpen] = useState(false);
   const [widthBelowThreshold, setWidthBelowThreshold] = useState(
     window.innerWidth <= THRESHOLD
-  )
-  const discordUsername = useContext(UsernameContext)
-  const sections = ["Projects", "About Me", "Speedtyping"]
+  );
+  const discordUsername = useContext(UsernameContext);
+  const [currentlySelectedPage, setCurrentlySelectedPage] = useState(null);
+  const sections = ["Projects", "About Me", "Speedtyping"];
   const contacts = [
     { source: discord, content: discordUsername },
     { source: instagram, content: "gian.pena1" }
-  ]
+  ];
   const sectionMap = {
     Projects: "/projects",
     "About Me": "/about",
     Speedtyping: "/speedtyping"
-  }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -100,10 +101,17 @@ export function Navbar() {
       else setWidthBelowThreshold(false)
     }
 
+    const path = window.location.pathname;
+    const page = Object.values(sectionMap).find(
+      (key) => sectionMap[key] === path
+    )
+    setCurrentlySelectedPage(page || null);
+    console.log('Currently selected page: ', currentlySelectedPage);
+
     handleResize()
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
-  }, [])
+  }, []);
 
   return (
     <div
@@ -148,7 +156,7 @@ export function Navbar() {
           <Link
             key={section}
             to={sectionMap[section]}
-            className="navbar-section general-site-font"
+            className={`navbar-section general-site-font ${currentlySelectedPage === section ? "selected" : ""}`}
             style={{
               color: "#000",
               textDecoration: "none",
@@ -292,5 +300,5 @@ export function Navbar() {
         />
       </Link>
     </div>
-  )
+  );
 }
