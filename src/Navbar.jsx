@@ -164,6 +164,9 @@ export function Navbar() {
                 { fontWeight: "bold" } : {}
               )
             }}
+            onClick={() => {
+              setCurrentlySelectedPage(sectionMap[section]);
+            }}
           >
             {section}
           </Link>
@@ -293,6 +296,9 @@ export function Navbar() {
           justifyContent: "center",
           position: "absolute",
           right: "20px"
+        }}
+        onClick={() => {
+          setCurrentlySelectedPage(null);
         }}
       >
         <img
