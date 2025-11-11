@@ -89,9 +89,9 @@ export function Navbar() {
     { source: instagram, content: "gian.pena1" }
   ];
   const sectionMap = {
-    Projects: "/projects",
+    "Projects": "/projects",
     "About Me": "/about",
-    Speedtyping: "/speedtyping"
+    "Speedtyping": "/speedtyping"
   };
 
   useEffect(() => {
@@ -102,10 +102,10 @@ export function Navbar() {
     }
 
     const path = window.location.pathname;
-    const page = Object.values(sectionMap).find(
+    const page = Object.keys(sectionMap).find(
       (key) => sectionMap[key] === path
     )
-    setCurrentlySelectedPage(page || null);
+    setCurrentlySelectedPage(sectionMap[page] || null);
 
     handleResize()
     window.addEventListener("resize", handleResize)
@@ -159,7 +159,10 @@ export function Navbar() {
             style={{
               color: "#000",
               textDecoration: "none",
-              paddingLeft: index ? "10px" : "0px"
+              paddingLeft: index ? "10px" : "0px",
+              ...(currentlySelectedPage === sectionMap[section] ?
+                { fontWeight: "bold" } : {}
+              )
             }}
           >
             {section}
