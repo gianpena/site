@@ -106,7 +106,6 @@ export function Navbar() {
       (key) => sectionMap[key] === path
     )
     setCurrentlySelectedPage(page || null);
-    console.log('Currently selected page: ', currentlySelectedPage);
 
     handleResize()
     window.addEventListener("resize", handleResize)
