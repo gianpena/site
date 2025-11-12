@@ -67,13 +67,22 @@ export function SpeedTyping() {
   }, [])
 
   return (
-    <div className="center-content" style={{ textAlign: "center" }}>
+    <div
+      className="center-content"
+      style={{
+        textAlign: "center",
+        paddingTop: "32px", // less padding
+        minHeight: "100vh",
+        boxSizing: "border-box",
+        overflow: "hidden"
+      }}
+    >
       <h1
         className="general-site-font"
         style={{
           color: "#ffffff",
-          fontSize: "2.5rem",
-          margin: "0 0 100px 0"
+          fontSize: "2rem", // slightly smaller
+          margin: "0 0 24px 0" // less margin
         }}
       >
         My speedtyping "career" in summary
@@ -81,12 +90,13 @@ export function SpeedTyping() {
 
       <div
         style={{
-          maxWidth: "420px",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-          gap: "8px",
-          alignItems: "center"
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gridTemplateRows: "1fr 1fr",
+          columnGap: "60px", // wider horizontal gap
+          rowGap: "0px",    // vertical gap
+          maxWidth: "650px",
+          margin: "0 auto"
         }}
       >
         <TypingStatsCard
