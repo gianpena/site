@@ -53,7 +53,7 @@ export function SpeedTyping() {
         "https://api.gianpena.xyz/typegg"
       )
       const typegg_json = await typegg_response.json()
-      setTypeggWPM(typegg_json.nWpm);
+      setTypeggWPM(typegg_json.nWpm.toFixed(2));
     } catch (e) {
       console.log("Error fetching type.gg data:", e)
     }
