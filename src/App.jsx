@@ -8,6 +8,16 @@ import { SpeedTyping } from "./sections/speedtyping/SpeedTyping"
 import "./sections/App.css"
 
 const LandingPage = () => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    let id = setTimeout(() => {
+      setShow(true);
+    }, 500);
+
+    return () => clearTimeout(id);
+  }, []);
+
   return (
     <div
       className="center-content"
@@ -15,10 +25,10 @@ const LandingPage = () => {
         color: "#ffffff"
       }}
     >
-      <h1 className="general-site-font italic">
+      <h1 className="general-site-font italic fade-in">
         “You can lead a crafter to diamonds, but you can’t make him mine.”
       </h1>
-      <h2 className="general-site-font">Things will eventually go here.</h2>
+      <h2 className={`general-site-font ${show ? "fade-in" : "invisible"}`}>Things will eventually go here.</h2>
     </div>
   )
 }
