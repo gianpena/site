@@ -1,7 +1,18 @@
-import "../App.css"
+import "./sections/App.css"
+import { useState, useEffect } from "react"
 import { GeneralStatsCard } from "./GeneralStatsCard"
 
-export function AboutMe() {
+export function HomePage() {
+  const [show, setShow] = useState(false);
+  
+    useEffect(() => {
+      let id = setTimeout(() => {
+        setShow(true);
+      }, 600);
+  
+      return () => clearTimeout(id);
+    }, []);
+
   return (
     <div
       className="center-content"
@@ -9,7 +20,7 @@ export function AboutMe() {
         color: "#ffffff"
       }}
     >
-      <h1 className="general-site-font">Who am I?</h1>
+      <h1 className="general-site-font fade-in">Hey there!</h1>
       <p
         style={{
           maxWidth: "600px",
@@ -18,7 +29,7 @@ export function AboutMe() {
           lineHeight: "1.6"
         }}
       >
-        <span className="general-site-font">
+        <span className={`general-site-font ${show ? "fade-in" : "invisible"}`}>
           I'm Gian Peña, a student at Florida International University's College
           of Engineering and Computing. I'm a competitive programmer, and the
           current "captain" of FIU's ICPC team. I also love speedtyping
