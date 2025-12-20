@@ -93,14 +93,13 @@ export function Navbar() {
   );
   const discordUsername = useContext(UsernameContext);
   const [currentlySelectedPage, setCurrentlySelectedPage] = useState(null);
-  const sections = ["Projects", "About Me", "Speedtyping"];
+  const sections = ["Projects", "Speedtyping"];
   const contacts = [
     { source: discord, content: discordUsername },
     { source: instagram, content: "gian.pena1" }
   ];
   const sectionMap = {
     "Projects": "/projects",
-    "About Me": "/about",
     "Speedtyping": "/speedtyping"
   };
 
