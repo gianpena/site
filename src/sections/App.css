@@ -23,9 +23,10 @@
 }
 
 .fade-in {
-  animation: fadeInAnimation ease 1s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+display: inline-block;
+animation: fadeInAnimation ease 1s;
+animation-iteration-count: 1;
+animation-fill-mode: forwards;
 }
 
 .center-content {
