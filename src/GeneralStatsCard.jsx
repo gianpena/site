@@ -5,6 +5,7 @@ export function GeneralStatsCard({ link, baseLoadingMessage }) {
   const [imageResolved, setImageResolved] = useState(false)
   const [error, setError] = useState("")
   const intervalId = useRef(-1)
+  const imageResolvedRef = useRef(false);
 
   function cleanup() {
     if (intervalId.current !== -1) {
@@ -22,12 +23,25 @@ export function GeneralStatsCard({ link, baseLoadingMessage }) {
       })
     }, 250)
 
-    return cleanup
+    const timeoutId = setTimeout(() => {
+      if (!imageResolvedRef.current) {
+        cleanup();
+        setError(e => {
+          statsCardMessage.current = "";
+          return "Something went wrong loading the card. Try again later!";
+        });
+      }
+    }, 10000);
+
+    return () => {
+      cleanup();
+      clearTimeout(timeoutId);
+    };
   }, [])
 
   return (
     <div>
-      {!imageResolved && (
+      {(!imageResolved || error) && (
         <div
           className="general-site-font"
           style={{
@@ -42,21 +56,26 @@ export function GeneralStatsCard({ link, baseLoadingMessage }) {
           {statsCardMessage.current || error}
         </div>
       )}
-      <div align="center" style={{ marginTop: "50px" }}>
-        <img
-          src={link}
-          alt=""
-          onLoad={() => {
-            cleanup()
-            setImageResolved(true)
-          }}
-          onError={() => {
-            cleanup()
-            statsCardMessage.current = ""
-            setError("Something went wrong loading the card. Try again later!")
-          }}
-        />
+      {!error && (
+        <div align="center" style={{ marginTop: "50px" }}>
+          <img
+            src={link}
+            alt=""
+            onLoad={() => {
+              if(error) return;
+              imageResolvedRef.current = true;
+              cleanup();
+              setImageResolved(true);
+            }}
+            onError={() => {
+              imageResolvedRef.current = true;
+              cleanup();
+              statsCardMessage.current = "";
+              setError("Something went wrong loading the card. Try again later!");
+            }}
+          />
       </div>
+      )}
     </div>
   )
 }
