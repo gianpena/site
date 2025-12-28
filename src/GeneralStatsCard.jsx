@@ -1,27 +1,27 @@
 import { useRef, useState, useEffect } from "react"
 export function GeneralStatsCard({ link, baseLoadingMessage }) {
-  const statsCardMessage = useRef("Loading LeetCode stats card...")
-  const [periods, setPeriods] = useState(2) // zero-based with +1 offset later
-  const [imageResolved, setImageResolved] = useState(false)
-  const [error, setError] = useState("")
-  const intervalId = useRef(-1)
+  const statsCardMessage = useRef("Loading LeetCode stats card...");
+  const [periods, setPeriods] = useState(2); // zero-based with +1 offset later
+  const [imageResolved, setImageResolved] = useState(false);
+  const [error, setError] = useState("");
+  const intervalId = useRef(-1);
   const imageResolvedRef = useRef(false);
 
   function cleanup() {
     if (intervalId.current !== -1) {
-      clearInterval(intervalId.current)
-      intervalId.current = -1
+      clearInterval(intervalId.current);
+      intervalId.current = -1;
     }
   }
 
   useEffect(() => {
     intervalId.current = setInterval(() => {
       setPeriods(p => {
-        p = (p + 1) % 3
-        statsCardMessage.current = `${baseLoadingMessage}${".".repeat(p + 1)}`
-        return p
+        p = (p + 1) % 3;
+        statsCardMessage.current = `${baseLoadingMessage}${".".repeat(p + 1)}`;
+        return p;
       })
-    }, 250)
+    }, 250);
 
     const timeoutId = setTimeout(() => {
       if (!imageResolvedRef.current) {
