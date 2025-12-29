@@ -56,10 +56,9 @@ export function GeneralStatsCard({ link, baseLoadingMessage }) {
           {statsCardMessage.current || error}
         </div>
       )}
-      {!error && (
-        <div align="center" style={{ marginTop: "50px" }}>
-          <img
-            src={link}
+      <div align="center" style={{ marginTop: "50px" }}>
+        <img
+            src={error ? "" : link}
             alt=""
             onLoad={() => {
               if(error) return;
@@ -73,9 +72,8 @@ export function GeneralStatsCard({ link, baseLoadingMessage }) {
               statsCardMessage.current = "";
               setError("Something went wrong loading the card. Try again later!");
             }}
-          />
+        />
       </div>
-      )}
     </div>
   )
 }
