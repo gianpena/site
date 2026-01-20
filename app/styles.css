@@ -4,6 +4,12 @@ body {
     background-color: #000000;
 }
 
+.card-container {
+    display: inline-grid;
+    grid-auto-columns: 1fr;
+    gap: 1rem;
+}
+
 .card {
     border: 1px solid #2e2e2e;
     border-radius: 8px;
