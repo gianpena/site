@@ -17,5 +17,5 @@ export default function Header() {
                 <Link key={index} href={page.path} style={{textDecoration: 'none'}}>{page.name}</Link>
             ))}
         </div>
-    )
+    );
 }
