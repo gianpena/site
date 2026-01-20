@@ -13,11 +13,18 @@ async function monkeytype(mode: string, mode2: string | number) {
     return await response.json();
 }
 
+async function typeracer() {
+    const response = await fetch('https://api.gianpena.xyz/typeracer');
+    if(!response.ok) return {};
+    return await response.json();
+}
+
 
 export default async function SpeedTypingPage() {
 
     const time60 = await monkeytype('time', 60);
     const time15 = await monkeytype('time', 15);
+    const typeracer_textbests = await typeracer();
 
     return (
         <div className="centered" style={{'gap': '20px'}}>
@@ -27,10 +34,13 @@ export default async function SpeedTypingPage() {
 
             <div className="card-container">
                 <Card title="MonkeyType time60 Personal Best">
-                    WPM: {time60?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} wpm {`(${time60?.data?.acc.toFixed(2)}% accuracy)`}
+                    WPM: {time60?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} wpm {`(${time60?.data?.acc.toFixed(2)}% accuracy, rank ${time60?.data?.rank ?? 'not found'})`}
                 </Card>
                 <Card title="MonkeyType time15 Personal Best">
-                    WPM: {time15?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} wpm {`(${time15?.data?.acc.toFixed(2)}% accuracy)`}
+                    WPM: {time15?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} wpm {`(${time15?.data?.acc.toFixed(2)}% accuracy, rank ${time15?.data?.rank ?? 'not found'})`}
+                </Card>
+                <Card title="TypeRacer Text Bests Average">
+                    WPM: {typeracer_textbests.stats}
                 </Card>
             </div>
         </div>
