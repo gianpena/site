@@ -19,12 +19,18 @@ async function typeracer() {
     return await response.json();
 }
 
+async function typegg() {
+    const response = await fetch('https://api.typegg.io/v1/users/gian');
+    if(!response.ok) return {};
+    return await response.json();
+}
 
 export default async function SpeedTypingPage() {
 
     const time60 = await monkeytype('time', 60);
     const time15 = await monkeytype('time', 15);
     const typeracer_textbests = await typeracer();
+    const typegg_data = await typegg();
 
     return (
         <div className="centered" style={{'gap': '20px'}}>
@@ -34,13 +40,16 @@ export default async function SpeedTypingPage() {
 
             <div className="card-container">
                 <Card title="MonkeyType time60 Personal Best">
-                    WPM: {time60?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} wpm {`(${time60?.data?.acc.toFixed(2)}% accuracy, rank ${time60?.data?.rank ?? 'not found'})`}
+                    WPM: {time60?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time60?.data?.acc.toFixed(2)}% accuracy, rank ${time60?.data?.rank ?? 'not found'})`}
                 </Card>
                 <Card title="MonkeyType time15 Personal Best">
-                    WPM: {time15?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} wpm {`(${time15?.data?.acc.toFixed(2)}% accuracy, rank ${time15?.data?.rank ?? 'not found'})`}
+                    WPM: {time15?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time15?.data?.acc.toFixed(2)}% accuracy, rank ${time15?.data?.rank ?? 'not found'})`}
                 </Card>
                 <Card title="TypeRacer Text Bests Average">
                     WPM: {typeracer_textbests.stats}
+                </Card>
+                <Card title="TypeGG nWPM">
+                    nWPM: {typegg_data?.stats?.nWpm ?? 'Not found. Try again later.'} (rank {typegg_data?.globalRank ?? 'not found'})
                 </Card>
             </div>
         </div>
