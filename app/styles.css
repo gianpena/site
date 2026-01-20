@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+
+body {
+    background-color: #000000;
+}
+
+.card-container {
+    display: inline-grid;
+    grid-auto-columns: 1fr;
+    gap: 1rem;
+}
+
+.card {
+    border: 1px solid #2e2e2e;
+    border-radius: 8px;
+    padding: 0 10px 10px 10px;
+}
+
+.button {
+    border: 1px solid #2e2e2e;
+    border-radius: 8px;
+    padding: 2px 5px 5px 5px;
+    display: inline-block;
+}
+
+.card-title {
+    margin-top: 5px;
+}
+
+.centered {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    justify-content: center;
+    align-items: center;
+    min-height: 92vh;
+}
+
+/* properties concerning all text */
+body, .card, h1, h2, h3, p, a, span, div {
+    font-family: 'Inconsolata', monospace;
+    color: #ffffff;
+}
