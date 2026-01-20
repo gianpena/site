@@ -26,10 +26,10 @@ export default async function SpeedTypingPage() {
             </div>
 
             <Card title="MonkeyType time60 Personal Best">
-                WPM: {time60?.data?.wpm ?? 'Not found. Try again later.'} wpm {`(${time60?.data?.wpm}% accuracy)`}
+                WPM: {time60?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} wpm {`(${time60?.data?.acc.toFixed(2)}% accuracy)`}
             </Card>
             <Card title="MonkeyType time15 Personal Best">
-                WPM: {time15?.data?.wpm ?? 'Not found. Try again later.'} wpm {`(${time15?.data?.wpm}% accuracy)`}
+                WPM: {time15?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} wpm {`(${time15?.data?.acc.toFixed(2)}% accuracy)`}
             </Card>
         </div>
     );
