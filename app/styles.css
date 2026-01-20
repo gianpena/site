@@ -19,7 +19,7 @@ body {
     flex-direction: column; /* Stack cards vertically */
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Full viewport height to center vertically on page */
+    min-height: 92vh;
 }
 
 /* properties concerning all text */
