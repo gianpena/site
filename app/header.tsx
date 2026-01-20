@@ -11,10 +11,10 @@ export default function Header() {
     return (
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', paddingTop: '10px'}}>
             <Link href="/">
-                <Image src={insignia} alt="Insignia" width={30} height={30} style={{paddingRight: '10px'}}/>
+                <Image className="darken" src={insignia} alt="Insignia" width={30} height={30} style={{paddingRight: '10px'}}/>
             </Link>
             {pages.map((page, index) => (
-                <Link key={index} href={page.path} style={{textDecoration: 'none'}}>{page.name}</Link>
+                <Link className="darken" key={index} href={page.path} style={{textDecoration: 'none'}}>{page.name}</Link>
             ))}
         </div>
     );

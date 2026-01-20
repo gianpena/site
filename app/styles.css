@@ -35,6 +35,15 @@ body {
     min-height: 92vh;
 }
 
+.darken {
+    transition: filter 200ms ease;
+    will-change: filter;
+}
+
+.darken:hover {
+    filter: brightness(0.6);
+}
+
 /* properties concerning all text */
 body, .card, h1, h2, h3, p, a, span, div {
     font-family: 'Inconsolata', monospace;
