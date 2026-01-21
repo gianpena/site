@@ -1,10 +1,16 @@
 'use client';
 import { useState, useEffect } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 
 export default function PictureSlideshow() {
 
     const [pictures, setPictures] = useState<string[] | null>(null);
+    const [emblaRef] = useEmblaCarousel({
+        loop: true,
+        dragFree: true,
+        containScroll: 'trimSnaps'
+    });
 
     useEffect(() => {
         async function fetchPictures() {
@@ -31,11 +37,17 @@ export default function PictureSlideshow() {
     }, []);
 
     if(!pictures)
-        return <p>Loading pictures...</p>;
+        return <p><i>Loading pictures...</i></p>;
 
     return (
-        <div>
-            TODO fill this out
+        <div className="embla" ref={emblaRef} style={{paddingTop:'100px'}}>
+            <div className="embla__container">
+                {pictures.map((picture, index) => (
+                    <div className="embla__slide" key={`hspc-picture-${index}`}>
+                        <img width="600" src={picture} alt={`Picture ${index + 1}`} />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 
