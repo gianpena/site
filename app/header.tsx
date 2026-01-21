@@ -5,7 +5,8 @@ import insignia from '../public/insignia.png'
 export default function Header() {
     const pages = [
         { name: 'Projects', path: '/projects' },
-        { name: 'Speedtyping', path: '/speedtyping' }
+        { name: 'Speedtyping', path: '/speedtyping' },
+        { name: 'Competitive Programming', path: '/competitive-programming' },
     ];
 
     return (
