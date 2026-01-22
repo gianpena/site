@@ -40,7 +40,7 @@ export default function PictureSlideshow() {
         return <p><i>Loading pictures...</i></p>;
 
     return (
-        <div className="embla" ref={emblaRef} style={{paddingTop:'100px'}}>
+        <div className="embla" ref={emblaRef} style={{paddingTop:'100px', paddingBottom: '10px'}}>
             <div className="embla__container">
                 {pictures.map((picture, index) => (
                     <div className="embla__slide" key={`hspc-picture-${index}`}>
