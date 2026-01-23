@@ -10,7 +10,7 @@ export default function CompetitiveProgrammingPage() {
                 More recently (and perhaps more significantly), I've been organizing FIU's High School Programming Contest (HSPC) since 2024. It's an annual contest for middle and high school students in Florida, and it's fun being on the other side of the table as an organizer after having participated in related contests since middle school!
             </p>
             <p>
-                You can find some pictures from our previous high school programming contest below!
+                Click and drag the carousel below to see pictures from our last high school programming contest!
             </p>
 
             <PictureSlideshow />
