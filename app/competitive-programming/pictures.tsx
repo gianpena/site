@@ -31,7 +31,7 @@ export default function PictureSlideshow() {
             scrolling.current = false;
             setTimeout(() => {
                 scrolling.current = true;
-            }, 40);
+            }, 80);
 
         }
 
