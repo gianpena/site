@@ -8,11 +8,45 @@ export default function PictureSlideshow() {
     const [pictures, setPictures] = useState<string[] | null>(null);
     const [periods, setPeriods] = useState<number>(1);
     const periodsInterval = useRef<NodeJS.Timeout | null>(null);
-    const [emblaRef] = useEmblaCarousel({
+    const scrolling = useRef<boolean>(true);
+    const [emblaRef, emblaApi] = useEmblaCarousel({
         loop: true,
         dragFree: true,
         containScroll: 'trimSnaps'
     });
+
+    useEffect(() => {
+
+        const handleWheel = (event: WheelEvent) => {
+            event.preventDefault();
+            if (!emblaApi) return;
+            if(!scrolling.current) return;
+
+            if(event.deltaY > 0) {
+                emblaApi.scrollNext();
+            } else {
+                emblaApi.scrollPrev();
+            }
+
+            scrolling.current = false;
+            setTimeout(() => {
+                scrolling.current = true;
+            }, 40);
+
+        }
+
+        const emblaNode = emblaApi?.rootNode();
+        if(emblaNode) {
+            emblaNode.addEventListener('wheel', handleWheel);
+        }
+
+        return () => {
+            if(emblaNode) {
+                emblaNode.removeEventListener('wheel', handleWheel);
+            }
+        };
+
+    }, [emblaRef, emblaApi]);
 
     useEffect(() => {
         async function fetchPictures() {
