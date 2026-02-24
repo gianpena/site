@@ -1,3 +1,5 @@
+'use client';
+
 import Card from '../card';
 import '../styles.css';
 
@@ -7,22 +9,43 @@ interface TypingData {
     rank: number
 }
 
-export default async function SpeedTypingPage() {
+import { useState, useEffect } from 'react';
 
-    let time60: TypingData | null = null;
-    let time15: TypingData | null = null;
-    let typegg: TypingData | null = null;
-    try {
-        const time60Response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=60`);
-        const time15Response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=15`);
-        const typeggResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/typegg`);
+export default function SpeedTypingPage() {
 
-        time60 = await time60Response.json();
-        time15 = await time15Response.json();
-        typegg = await typeggResponse.json();
-    } catch (error) {
-        console.error('Error fetching typing data:', error);
-    }
+    const [ time60, setTime60 ] = useState<TypingData | string>('Loading...');
+    const [ time15, setTime15 ] = useState<TypingData | string>('Loading...');
+    const [ typegg, setTypegg ] = useState<{wpm: number, rank: number} | string>('Loading...');
+
+    useEffect(() => {
+        async function retrieveTypingData() {
+            try {
+                const time60Response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=60`);
+                setTime60(await time60Response.json());
+            } catch (error) {
+                console.error('Error fetching MonkeyType time60 data:', error);
+                setTime60('Not found. Try again later.');
+            }
+
+            try {
+                const time15Response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=15`);
+                setTime15(await time15Response.json());
+            } catch (error) {
+                console.error('Error fetching MonkeyType time15 data:', error);
+                setTime15('Not found. Try again later.');
+            }
+
+            try {
+                const typeggResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/typegg`);
+                setTypegg(await typeggResponse.json());
+            } catch (error) {
+                console.error('Error fetching TypeGG data:', error);
+                setTypegg('Not found. Try again later.');
+            }
+        }
+
+        retrieveTypingData();
+    }, []);
 
     return (
         <div className="centered" style={{'gap': '20px'}}>
@@ -32,13 +55,19 @@ export default async function SpeedTypingPage() {
 
             <div className="card-container">
                 <Card title="MonkeyType time60 Personal Best">
-                    WPM: {time60?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time60?.acc.toFixed(2)}% accuracy, rank ${time60?.rank ?? 'not found'})`}
+                    {typeof time60 === 'string' ? time60 : (
+                        <span>WPM: {time60?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time60?.acc.toFixed(2)}% accuracy, rank ${time60?.rank ?? 'not found'})`}</span>
+                    )}
                 </Card>
                 <Card title="MonkeyType time15 Personal Best">
-                    WPM: {time15?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time15?.acc.toFixed(2)}% accuracy, rank ${time15?.rank ?? 'not found'})`}
+                    {typeof time15 === 'string' ? time15 : (
+                        <span>WPM: {time15?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time15?.acc.toFixed(2)}% accuracy, rank ${time15?.rank ?? 'not found'})`}</span>
+                    )}
                 </Card>
                 <Card title="TypeGG nWPM">
-                    nWPM: {typegg?.wpm ?? 'Not found. Try again later.'} (rank {typegg?.rank ?? 'not found'})
+                    {typeof typegg === 'string' ? typegg : (
+                        <span>nWPM: {typegg?.wpm.toFixed(2) ?? 'Not found. Try again later.'} (rank {typegg?.rank ?? 'not found'})</span>
+                    )}
                 </Card>
             </div>
         </div>
