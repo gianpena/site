@@ -15,36 +15,22 @@ export default function SpeedTypingPage() {
 
     const [ time60, setTime60 ] = useState<TypingData | string>('Loading...');
     const [ time15, setTime15 ] = useState<TypingData | string>('Loading...');
-    const [ typegg, setTypegg ] = useState<{wpm: number, rank: number} | string>('Loading...');
+    const [ typegg, setTypegg ] = useState<TypingData | string>('Loading...');
 
     useEffect(() => {
-        async function retrieveTypingData() {
+        async function retrieveTypingData(setValue: React.Dispatch<React.SetStateAction<TypingData | string>>, url: string) {
             try {
-                const time60Response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=60`);
-                setTime60(await time60Response.json());
+                const response = await fetch(url);
+                setValue(await response.json());
             } catch (error) {
-                console.error('Error fetching MonkeyType time60 data:', error);
-                setTime60('Not found. Try again later.');
-            }
-
-            try {
-                const time15Response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=15`);
-                setTime15(await time15Response.json());
-            } catch (error) {
-                console.error('Error fetching MonkeyType time15 data:', error);
-                setTime15('Not found. Try again later.');
-            }
-
-            try {
-                const typeggResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/typegg`);
-                setTypegg(await typeggResponse.json());
-            } catch (error) {
-                console.error('Error fetching TypeGG data:', error);
-                setTypegg('Not found. Try again later.');
+                console.error(`Error fetching data from ${url}:`, error);
+                setValue('Not found. Try again later.');
             }
         }
 
-        retrieveTypingData();
+        retrieveTypingData(setTime60, `${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=60`);
+        retrieveTypingData(setTime15, `${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=15`);
+        retrieveTypingData(setTypegg, `${process.env.NEXT_PUBLIC_APP_URL}/api/typegg`);
     }, []);
 
     return (
