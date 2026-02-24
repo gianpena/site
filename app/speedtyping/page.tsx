@@ -45,9 +45,6 @@ export default async function SpeedTypingPage() {
                 <Card title="MonkeyType time15 Personal Best">
                     WPM: {time15?.data?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time15?.data?.acc.toFixed(2)}% accuracy, rank ${time15?.data?.rank ?? 'not found'})`}
                 </Card>
-                <Card title="TypeRacer Text Bests Average">
-                    WPM: {typeracer_textbests.stats}
-                </Card>
                 <Card title="TypeGG nWPM">
                     nWPM: {typegg_data?.stats?.nWpm ?? 'Not found. Try again later.'} (rank {typegg_data?.globalRank ?? 'not found'})
                 </Card>
