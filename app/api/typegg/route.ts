@@ -6,8 +6,8 @@ export async function GET() {
     }
 
     const typeggJson = await typegg.json();
-    const { nWpm, accuracy } = typeggJson.stats;
+    const { nWpm } = typeggJson.stats;
     const { globalRank } = typeggJson;
 
-    return new Response(JSON.stringify({ wpm: nWpm, acc: accuracy, rank: globalRank }));
+    return new Response(JSON.stringify({ wpm: nWpm, acc: -1, rank: globalRank }));
 }
