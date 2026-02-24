@@ -9,7 +9,7 @@ export async function GET(request: Request) {
             }
         });
     if(!monkeytype.ok) {
-        return new Response('Failed to fetch Monkeytype leaderboard.', { status: 500 });
+        return new Response('Failed to fetch Monkeytype data.', { status: 500 });
     }
 
     const monkeytypeJson = await monkeytype.json();
