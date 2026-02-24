@@ -8,6 +8,8 @@ else
   git pull
 fi
 
+cp ../.env ./.env
+cp ../.env.production ./.env.production
 npm install
 npm run build
 npm start
