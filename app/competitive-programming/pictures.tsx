@@ -1,52 +1,15 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Scrollbar, Mousewheel, FreeMode } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/scrollbar';
+import 'swiper/css/free-mode';
 
 export default function PictureSlideshow() {
-
     const [pictures, setPictures] = useState<string[] | null>(null);
     const [periods, setPeriods] = useState<number>(1);
-    const periodsInterval = useRef<NodeJS.Timeout | null>(null);
-    const scrolling = useRef<boolean>(true);
-    const [emblaRef, emblaApi] = useEmblaCarousel({
-        loop: true,
-        dragFree: true,
-        containScroll: 'trimSnaps'
-    });
-
-    useEffect(() => {
-
-        const handleWheel = (event: WheelEvent) => {
-            event.preventDefault();
-            if (!emblaApi) return;
-            if(!scrolling.current) return;
-
-            if(event.deltaY > 0) {
-                emblaApi.scrollNext();
-            } else {
-                emblaApi.scrollPrev();
-            }
-
-            scrolling.current = false;
-            setTimeout(() => {
-                scrolling.current = true;
-            }, 80);
-
-        }
-
-        const emblaNode = emblaApi?.rootNode();
-        if(emblaNode) {
-            emblaNode.addEventListener('wheel', handleWheel);
-        }
-
-        return () => {
-            if(emblaNode) {
-                emblaNode.removeEventListener('wheel', handleWheel);
-            }
-        };
-
-    }, [emblaRef, emblaApi]);
+    const periodsInterval = useRef<number | null>(null);
 
     useEffect(() => {
         async function fetchPictures() {
@@ -65,13 +28,12 @@ export default function PictureSlideshow() {
 
             setPictures(URLs);
             console.log(URLs);
-
         }
 
         console.log('Retrieving pictures...');
         fetchPictures().then(() => { console.log('Pictures retrieved'); }).catch(error => console.log(error));
 
-        periodsInterval.current = setInterval(() => {
+        periodsInterval.current = window.setInterval(() => {
             setPeriods(p => {
                 p--;
                 p = (p+1) % 3;
@@ -81,7 +43,7 @@ export default function PictureSlideshow() {
         }, 100);
 
         return () => {
-            if(periodsInterval.current) {
+            if(periodsInterval.current !== null) {
                 clearInterval(periodsInterval.current);
             }
         };
@@ -92,15 +54,22 @@ export default function PictureSlideshow() {
         return <p><i>Loading pictures{'.'.repeat(periods)}</i></p>;
 
     return (
-        <div className="embla" ref={emblaRef} style={{paddingTop:'100px', paddingBottom: '10px'}}>
-            <div className="embla__container">
+        <div style={{ overscrollBehavior: 'none' }}>
+            <Swiper
+                modules={[Scrollbar, Mousewheel, FreeMode]}
+                spaceBetween={10}
+                slidesPerView={3}
+                scrollbar={{ draggable: true }}
+                mousewheel={{ forceToAxis: false, releaseOnEdges: false }}
+                freeMode={true}
+                grabCursor={true}
+            >
                 {pictures.map((picture, index) => (
-                    <div className="embla__slide" key={`hspc-picture-${index}`}>
-                        <img width="600" src={picture} alt={`Picture ${index + 1}`} />
-                    </div>
+                    <SwiperSlide key={index}>
+                        <img src={picture} alt={`Picture ${index + 1}`} style={{ width: '100%', height: 'auto' }} />
+                    </SwiperSlide>
                 ))}
-            </div>
+            </Swiper>
         </div>
     );
-
 }
