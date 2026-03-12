@@ -1,15 +1,15 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar, Mousewheel, FreeMode } from 'swiper/modules';
-import usePeriods from '../periods';
+import useLoadingMessage from "../loading-message";
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/free-mode';
 
 export default function PictureSlideshow() {
     const [pictures, setPictures] = useState<string[] | null>(null);
-    const periods = usePeriods();
+    const loading = useLoadingMessage();
 
     useEffect(() => {
         async function fetchPictures() {
@@ -36,7 +36,7 @@ export default function PictureSlideshow() {
     }, []);
 
     if(!pictures)
-        return <p><i>Loading pictures{'.'.repeat(periods)}</i></p>;
+        return <p><i>{loading}</i></p>;
 
     return (
         <div style={{ overscrollBehavior: 'none' }}>

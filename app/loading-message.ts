@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-export default function usePeriods(){
+export default function useLoadingMessage(){
     const [periods, setPeriods] = useState<number>(1);
     const periodsInterval = useRef<number | null>(null);
 
@@ -20,5 +20,5 @@ export default function usePeriods(){
         }
     }, []);
 
-    return periods;
+    return `Loading${'.'.repeat(periods)}`;
 }
