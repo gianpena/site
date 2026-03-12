@@ -2,6 +2,7 @@
 
 import Card from '../card';
 import '../styles.css';
+import useLoadingMessage from '../loading-message';
 
 interface TypingData {
     wpm: number,
@@ -16,6 +17,7 @@ export default function SpeedTypingPage() {
     const [ time60, setTime60 ] = useState<TypingData | string>('Loading...');
     const [ time15, setTime15 ] = useState<TypingData | string>('Loading...');
     const [ typegg, setTypegg ] = useState<TypingData | string>('Loading...');
+    const loading = useLoadingMessage();
 
     useEffect(() => {
         async function retrieveTypingData(setValue: React.Dispatch<React.SetStateAction<TypingData | string>>, url: string) {
@@ -41,17 +43,17 @@ export default function SpeedTypingPage() {
 
             <div className="card-container">
                 <Card title="MonkeyType time60 Personal Best">
-                    {typeof time60 === 'string' ? time60 : (
+                    {typeof time60 === 'string' ? loading : (
                         <span>WPM: {time60?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time60?.acc.toFixed(2)}% accuracy, rank ${time60?.rank ?? 'not found'})`}</span>
                     )}
                 </Card>
                 <Card title="MonkeyType time15 Personal Best">
-                    {typeof time15 === 'string' ? time15 : (
+                    {typeof time15 === 'string' ? loading : (
                         <span>WPM: {time15?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time15?.acc.toFixed(2)}% accuracy, rank ${time15?.rank ?? 'not found'})`}</span>
                     )}
                 </Card>
                 <Card title="TypeGG nWPM">
-                    {typeof typegg === 'string' ? typegg : (
+                    {typeof typegg === 'string' ? loading : (
                         <span>nWPM: {typegg?.wpm.toFixed(2) ?? 'Not found. Try again later.'} (rank {typegg?.rank ?? 'not found'})</span>
                     )}
                 </Card>
