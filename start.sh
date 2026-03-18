@@ -10,6 +10,7 @@ else
   git pull
 fi
 
+rm -rf .next
 npm install
 npm run build
 npm start
