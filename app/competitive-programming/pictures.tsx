@@ -51,7 +51,9 @@ export default function PictureSlideshow() {
             >
                 {pictures.map((picture, index) => (
                     <SwiperSlide key={index}>
-                        <img src={picture} alt={`Picture ${index + 1}`} style={{ width: '100%', height: 'auto' }} />
+                        <a href={picture}>
+                            <img src={picture} alt={`Picture ${index + 1}`} style={{ width: '100%', height: 'auto' }} />
+                        </a>
                     </SwiperSlide>
                 ))}
             </Swiper>
