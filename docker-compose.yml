@@ -1,5 +1,6 @@
 services:
   site:
+    container_name: site
     build: .
     ports:
       - "3000:3000"
