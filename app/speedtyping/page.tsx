@@ -1,39 +1,37 @@
-'use client';
-
 import Card from '../card';
+import { Suspense } from 'react';
 import '../styles.css';
-import useLoadingMessage from '../loading-message';
 
-interface TypingData {
-    wpm: number,
-    acc: number,
-    rank: number
+async function MonkeyType({ mode }: { mode?: string }){
+    const monkeytype = await fetch(`https://api.monkeytype.com/leaderboards/rank?language=english&mode=time&mode2=${mode ?? '60'}`,
+        {
+            method: 'GET',
+            headers: {
+                'Authorization': `ApeKey ${process.env.APE_KEY}`
+            },
+            cache: 'no-store',
+        });
+    if(!monkeytype.ok)
+        return <span>{`Error fetching statistics for MonkeyType time${mode}.`}</span>;
+
+    const json = await monkeytype.json();
+    const { wpm, acc, rank } = json.data;
+    return <span>{`WPM: ${wpm.toFixed(2)} (${acc.toFixed(2)}% accuracy, rank ${rank})`}</span>;
 }
 
-import { useState, useEffect } from 'react';
+async function TypeGG() {
+    const typegg = await fetch('https://api.typegg.io/v1/users/gian', { cache: 'no-store' });
+    if(!typegg.ok)
+        return <span>Error fetching statistics for TypeGG.</span>;
 
-export default function SpeedTypingPage() {
+    const json = await typegg.json();
+    const { nWpm } = json.stats;
+    const { globalRank } = json;
 
-    const [ time60, setTime60 ] = useState<TypingData | string>('Loading...');
-    const [ time15, setTime15 ] = useState<TypingData | string>('Loading...');
-    const [ typegg, setTypegg ] = useState<TypingData | string>('Loading...');
-    const loading = useLoadingMessage();
+    return <span>{`nWPM: ${nWpm.toFixed(2)} (rank ${globalRank})`}</span>;
+}
 
-    useEffect(() => {
-        async function retrieveTypingData(setValue: React.Dispatch<React.SetStateAction<TypingData | string>>, url: string) {
-            try {
-                const response = await fetch(url);
-                setValue(await response.json());
-            } catch (error) {
-                console.error(`Error fetching data from ${url}:`, error);
-                setValue('Not found. Try again later.');
-            }
-        }
-
-        retrieveTypingData(setTime60, `${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=60`);
-        retrieveTypingData(setTime15, `${process.env.NEXT_PUBLIC_APP_URL}/api/monkeytype?mode=15`);
-        retrieveTypingData(setTypegg, `${process.env.NEXT_PUBLIC_APP_URL}/api/typegg`);
-    }, []);
+export default async function SpeedTypingPage() {
 
     return (
         <div className="centered" style={{'gap': '20px'}}>
@@ -43,19 +41,19 @@ export default function SpeedTypingPage() {
 
             <div className="card-container">
                 <Card title="MonkeyType time60 Personal Best">
-                    {typeof time60 === 'string' ? loading : (
-                        <span>WPM: {time60?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time60?.acc.toFixed(2)}% accuracy, rank ${time60?.rank ?? 'not found'})`}</span>
-                    )}
+                    <Suspense fallback={<span className="loading">Loading</span>}>
+                        <MonkeyType />
+                    </Suspense>
                 </Card>
                 <Card title="MonkeyType time15 Personal Best">
-                    {typeof time15 === 'string' ? loading : (
-                        <span>WPM: {time15?.wpm.toFixed(2) ?? 'Not found. Try again later.'} {`(${time15?.acc.toFixed(2)}% accuracy, rank ${time15?.rank ?? 'not found'})`}</span>
-                    )}
+                    <Suspense fallback={<span className="loading">Loading</span>}>
+                        <MonkeyType mode='15' />
+                    </Suspense>
                 </Card>
                 <Card title="TypeGG nWPM">
-                    {typeof typegg === 'string' ? loading : (
-                        <span>nWPM: {typegg?.wpm.toFixed(2) ?? 'Not found. Try again later.'} (rank {typegg?.rank ?? 'not found'})</span>
-                    )}
+                    <Suspense fallback={<span className="loading">Loading</span>}>
+                        <TypeGG />
+                    </Suspense>
                 </Card>
             </div>
         </div>

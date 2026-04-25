@@ -2,14 +2,12 @@
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar, Mousewheel, FreeMode } from 'swiper/modules';
-import useLoadingMessage from "../loading-message";
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/free-mode';
 
 export default function PictureSlideshow() {
     const [pictures, setPictures] = useState<string[] | null>(null);
-    const loading = useLoadingMessage();
 
     useEffect(() => {
         async function fetchPictures() {
@@ -36,7 +34,7 @@ export default function PictureSlideshow() {
     }, []);
 
     if(!pictures)
-        return <p><i>{loading}</i></p>;
+        return <span className='loading'>Loading</span>
 
     return (
         <div style={{ overscrollBehavior: 'none' }}>
