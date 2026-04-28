@@ -1,4 +1,5 @@
-import PictureSlideshow from './pictures';
+import { Suspense } from "react";
+import Pictures from "@/competitive-programming/pictures";
 
 export default function CompetitiveProgrammingPage() {
     return (
@@ -13,7 +14,9 @@ export default function CompetitiveProgrammingPage() {
                 Click and drag the carousel below to see pictures from our last high school programming contest!
             </p>
 
-            <PictureSlideshow />
+            <Suspense fallback={<div className="loading">Loading</div>}>
+                <Pictures />
+            </Suspense>
         </div>
     );
 }
