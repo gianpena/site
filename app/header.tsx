@@ -11,7 +11,7 @@ export default function Header() {
     ];
 
     return (
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', paddingTop: '10px'}}>
+        <div className="header-nav">
             <Link href="/">
                 <Image className="darken" src={insignia} alt="Insignia" width={30} height={30} style={{paddingRight: '10px'}}/>
             </Link>
