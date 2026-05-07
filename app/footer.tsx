@@ -7,7 +7,7 @@ import linkedin from '../public/linkedin.svg';
 export default function Footer() {
 
     return (
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
+        <div className="footer-nav" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'}}>
             <Link className="darken" key="my-github-profile" href="https://github.com/gianpena">
                 <Image alt="github" src={github} width={30} height={30}/>
             </Link>
