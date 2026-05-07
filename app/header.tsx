@@ -15,9 +15,18 @@ export default function Header() {
             <Link href="/">
                 <Image className="darken" src={insignia} alt="Insignia" width={30} height={30} style={{paddingRight: '10px'}}/>
             </Link>
-            {pages.map((page, index) => (
-                <Link className="darken" key={index} href={page.path} style={{textDecoration: 'none'}}>{page.name}</Link>
-            ))}
+            <div className="nav-dropdown">
+                <svg className="nav-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 7.5L10 12.5L15 7.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <div className="nav-menu">
+                    {pages.map(page => (
+                        <div key={page.path}>
+                            <Link href={page.path}>{page.name}</Link>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }

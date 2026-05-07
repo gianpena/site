@@ -71,12 +71,77 @@ body {
 }
 
 .header-nav {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     flex-wrap: wrap;
     gap: 10px;
     padding: 10px 16px 0;
+}
+
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-chevron {
+    cursor: pointer;
+    display: block;
+    transition: transform 300ms ease;
+}
+
+.nav-dropdown:hover .nav-chevron {
+    transform: rotate(-180deg);
+}
+
+.nav-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease, transform 200ms ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    white-space: nowrap;
+    text-align: right;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #2e2e2e;
+}
+
+.nav-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+}
+
+.nav-dropdown:hover .nav-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.footer-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
 }
 
 .resume-iframe {

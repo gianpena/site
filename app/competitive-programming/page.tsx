@@ -3,7 +3,7 @@ import Pictures from "@/competitive-programming/pictures";
 
 export default function CompetitiveProgrammingPage() {
     return (
-        <div style={{minHeight: '92vh', paddingTop: '30px'}}>
+        <div>
             <p>
                 I've been doing competitive programming since 2018. I normally do not compete in online contests, but I do problems on various online judges.
             </p>
