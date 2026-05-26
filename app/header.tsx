@@ -22,7 +22,7 @@ export default function Header() {
                 <div className="nav-menu">
                     {pages.map(page => (
                         <div key={page.path}>
-                            <Link href={page.path}>{page.name}</Link>
+                            <Link href={page.path} style={{ textDecoration: 'none' }}>{page.name}</Link>
                         </div>
                     ))}
                 </div>
