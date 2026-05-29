@@ -2,7 +2,7 @@ import { parse } from 'node-html-parser';
 import Slideshow from "@/competitive-programming/slideshow";
 
 export default async function Pictures() {
-    const pictures = await fetch('https://academy.cis.fiu.edu/gallery-hspc25/', {
+    const pictures = await fetch('https://academy.cis.fiu.edu/gallery-hspc26/', {
         signal: AbortSignal.timeout(3000)
     });
     if(!pictures.ok)
