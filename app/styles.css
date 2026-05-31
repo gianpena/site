@@ -91,11 +91,12 @@ body {
 .nav-chevron {
     cursor: pointer;
     display: block;
+    transform: rotate(-90deg);
     transition: transform 150ms ease;
 }
 
 .nav-dropdown:hover .nav-chevron {
-    transform: rotate(-90deg);
+    transform: rotate(0deg);
 }
 
 .nav-menu {
