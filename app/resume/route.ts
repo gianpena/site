@@ -1,5 +1,5 @@
 export async function GET() {
-    const res = await fetch('https://raw.githubusercontent.com/gianpena/resume/main/resume.pdf');
+    const res = await fetch('https://raw.githubusercontent.com/gianpena/resume/main/resume.pdf', { next: { revalidate: 300 } });
     const pdf = await res.arrayBuffer();
     return new Response(pdf, {
         headers: {
