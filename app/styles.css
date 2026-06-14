@@ -138,6 +138,14 @@ body {
     transform: translateY(0);
 }
 
+.nav-menu a {
+    transition: color 150ms ease;
+}
+
+.nav-menu a:hover {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .footer-nav {
     position: fixed;
     bottom: 0;
