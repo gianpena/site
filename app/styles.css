@@ -68,6 +68,11 @@ body {
     to { opacity: 1; }
 }
 
+/* Pause all animations inside the wrapper until JS marks the page as visible */
+.anim-wrapper:not(.anim-ready) * {
+    animation-play-state: paused !important;
+}
+
 .loading::after {
     content: '.';
     animation: loading-dots 0.2s steps(1, end) infinite;
