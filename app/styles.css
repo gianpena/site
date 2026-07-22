@@ -23,8 +23,6 @@ body {
 }
 
 .card {
-    border: 1px solid #2e2e2e;
-    border-radius: 8px;
     padding: 1rem 2rem 1.5rem
 }
 
