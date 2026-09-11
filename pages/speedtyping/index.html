@@ -43,7 +43,7 @@
                     const entry = leaderboard.data.entries.find(e => e.uid === monkeytype_uid);
                     if(!entry) return;
 
-                    el.textContent = `Monkeytype (${mode} seconds): ${entry.wpm} WPM (${entry.acc}% acc)`;
+                    el.textContent = `Monkeytype (${mode} seconds): ${entry.wpm.toFixed(2)} WPM (${entry.acc.toFixed(2)}% acc, rank ${entry.rank})`;
                 });
             }
 
@@ -52,9 +52,8 @@
                 .then(response => response.json())
                 .then(user => {
                     if(!user) return;
-
                     const el = document.getElementById("typegg");
-                    el.textContent = `TypeGG: ${user.stats.nWpm} nWPM`;
+                    el.textContent = `TypeGG (overall): ${user.stats.nWpm.toFixed(2)} nWPM (rank ${user.globalRank})`;
                 });
             }
 
