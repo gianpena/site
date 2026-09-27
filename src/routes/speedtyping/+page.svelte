@@ -7,7 +7,11 @@
     let monkeytype_uid: string = "SoJQKReSXhQlSySyomOEOiorGAJ3";
     let typegg_uid: string = "4246w9nru2u5t16";
 
-    let speeds: { [key: string]: { wpm: string, rank: number, acc?: string } | null } = $state({});
+    let speeds: { [key: string]: { wpm: string, rank: number, acc?: string } | null | undefined } = $state({
+        "Monkeytype (15 seconds):": undefined,
+        "Monkeytype (60 seconds):": undefined,
+        "TypeGG (overall):": undefined
+    });
 
     async function monkeytype(mode: string, key: string) {
         const response = await fetch(`https://api.monkeytype.com/leaderboards?language=english&mode=time&mode2=${mode}&pageSize=100`);
@@ -51,13 +55,16 @@
     <span>You can check out some of my most notable stats below!</span>
     <div class="flex flex-col text-[9pt] md:text-[12pt] mt-[20px] font-mono">
         {#each Object.entries(speeds).sort() as [key, value] (key)}
-            <div in:fade={{ duration: 300, easing: cubicIn }} class="flex flex-row gap-2">
-                {#if !value}
-                    <span>{key} Failed to retrieve data.</span>
-                {:else}
-                    {const details = (value.acc ? [`${value.acc}%`] : []).concat([`rank ${value.rank}`]);}
-                    <span>{key} {value.wpm} WPM ({details.join(", ")})</span>
-                {/if}
+            <div class="flex flex-row gap-2">
+                <div>
+                    <span>{key}</span>
+                    {#if value}
+                        {const details = (value.acc ? [`${value.acc}%`] : []).concat([`rank ${value.rank}`]);}
+                        <span in:fade={{ duration: 300, easing: cubicIn }}>{value.wpm} WPM ({details.join(", ")})</span>    
+                    {:else if value === null}
+                        <span in:fade={{ duration: 300, easing: cubicIn }}>Failed to retrieve value.</span>
+                    {/if}
+                </div>
             </div>
         {/each}
     </div>
