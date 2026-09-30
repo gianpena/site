@@ -7,7 +7,9 @@
     let monkeytype_uid: string = "SoJQKReSXhQlSySyomOEOiorGAJ3";
     let typegg_uid: string = "4246w9nru2u5t16";
 
-    let speeds: { [key: string]: { wpm: string, rank: number, acc?: string } | null | undefined } = $state({
+    type SpeedRecord = { wpm: string, rank: number, acc?: string } | null | undefined;
+
+    let speeds: { [key: string]: SpeedRecord } = $state({
         "Monkeytype (15 seconds):": undefined,
         "Monkeytype (60 seconds):": undefined,
         "TypeGG (overall):": undefined
@@ -50,6 +52,17 @@
 
 </script>
 
+{#snippet speed(value: SpeedRecord)}
+    {#if value}
+        {const details = (value.acc ? [`${value.acc}%`] : []).concat([`rank ${value.rank}`]);}
+        <span in:fade={{ duration: 300, delay: 300, easing: cubicIn }} out:fade={{ duration: 300, easing: cubicIn }}>{value.wpm} WPM ({details.join(", ")})</span>    
+    {:else if value === null}
+        <span in:fade={{ duration: 300, delay: 300, easing: cubicIn }} out:fade={{ duration: 300, easing: cubicIn }}>Failed to retrieve value.</span>
+    {:else}
+        <span in:fade={{ duration: 300, delay: 300, easing: cubicIn }} out:fade={{ duration: 300, easing: cubicIn }} class="loading">Loading</span>
+    {/if}
+{/snippet}
+
 <div class="flex-1 flex flex-col gap-6 text-[20pt]">
     <span>I've been speedtyping for over 10 years, and am top 100 on major platforms like Monkeytype, TypeRacer, and TypeGG. I got especially interested in active improvement (as opposed to simply speedtyping for fun) in the summer of 2023, and I've been typing more actively since.</span>
     <span>You can check out some of my most notable stats below!</span>
@@ -58,14 +71,24 @@
             <div class="flex flex-row gap-2">
                 <div>
                     <span>{key}</span>
-                    {#if value}
-                        {const details = (value.acc ? [`${value.acc}%`] : []).concat([`rank ${value.rank}`]);}
-                        <span in:fade={{ duration: 300, easing: cubicIn }}>{value.wpm} WPM ({details.join(", ")})</span>    
-                    {:else if value === null}
-                        <span in:fade={{ duration: 300, easing: cubicIn }}>Failed to retrieve value.</span>
-                    {/if}
+                    {@render speed(value)}
                 </div>
             </div>
         {/each}
     </div>
 </div>
+
+<style>
+    .loading::after {
+        content: "";
+        display: inline-block;
+        width: 3ch;
+        animation: dots 0.2s steps(1) infinite;
+    }
+
+    @keyframes dots {
+        0% { content: "."; }
+        33% { content: ".."; }
+        66% { content: "..."; }
+    }
+</style>
