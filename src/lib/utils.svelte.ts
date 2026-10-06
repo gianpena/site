@@ -7,5 +7,8 @@ const fadeIn = (node: HTMLElement): TransitionConfig =>
 const fadeOut = (node: HTMLElement): TransitionConfig =>
     fade(node, { duration: 300, easing: cubicIn });
 
+const pageIn = (node: HTMLElement): TransitionConfig =>
+    fade(node, { duration: 200, easing: cubicIn });
 
-export { fadeIn, fadeOut };
+
+export { fadeIn, fadeOut, pageIn };
