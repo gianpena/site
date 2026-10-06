@@ -1,8 +1,7 @@
 <script lang="ts">
 
     import { onMount } from 'svelte';
-    import { fade } from 'svelte/transition';
-    import { cubicIn } from 'svelte/easing';
+    import { fadeIn, fadeOut } from '$lib/utils.svelte';
 
     let monkeytype_uid: string = "SoJQKReSXhQlSySyomOEOiorGAJ3";
     let typegg_uid: string = "4246w9nru2u5t16";
@@ -55,11 +54,11 @@
 {#snippet speed(value: SpeedRecord)}
     {#if value}
         {const details = (value.acc ? [`${value.acc}%`] : []).concat([`rank ${value.rank}`]);}
-        <span in:fade={{ duration: 300, delay: 300, easing: cubicIn }} out:fade={{ duration: 300, easing: cubicIn }}>{value.wpm} WPM ({details.join(", ")})</span>    
+        <span in:fadeIn out:fadeOut>{value.wpm} WPM ({details.join(", ")})</span>    
     {:else if value === null}
-        <span in:fade={{ duration: 300, delay: 300, easing: cubicIn }} out:fade={{ duration: 300, easing: cubicIn }}>Failed to retrieve value.</span>
+        <span in:fadeIn out:fadeOut>Failed to retrieve value.</span>
     {:else}
-        <span in:fade={{ duration: 300, delay: 300, easing: cubicIn }} out:fade={{ duration: 300, easing: cubicIn }} class="loading">Loading</span>
+        <span in:fadeIn out:fadeOut class="loading">Loading</span>
     {/if}
 {/snippet}
 
