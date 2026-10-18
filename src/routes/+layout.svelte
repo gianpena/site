@@ -5,8 +5,9 @@
 	import Pages from '$lib/components/Pages.svelte';
 	import { page } from '$app/state';
 	import NotFound from '$lib/components/NotFound.svelte';
+	import type { Snippet } from 'svelte';
 
-	let { children } = $props();
+	let { data, children }: { data: { current_hash: string }, children: Snippet } = $props();
 </script>
 
 <svelte:head>
@@ -21,7 +22,7 @@
 					{@render children()}
 				</div>
 			{/key}
-			<Pages />
+			<Pages hash={data.current_hash}/>
 		</div>
 	</div>
 </NotFound>

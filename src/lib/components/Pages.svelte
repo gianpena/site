@@ -2,6 +2,7 @@
 
     import github from '$lib/assets/github.svg';
     import linkedin from '$lib/assets/linkedin.svg';
+    import git_branch from '$lib/assets/git-branch.svg';
 
     const externalResources = [
         { img: github, url: "https://github.com/gianpena", alt: "GitHub" },
@@ -14,6 +15,8 @@
         { title: "Competitive Programming", path: "/competitive-programming" },
         { title: "Resume", path: "/resume" }
     ];
+
+    let { hash }: { hash: string } = $props();
 
 </script>
 
@@ -31,4 +34,8 @@
             </a>
         {/each}
     </div>
+    <a href="https://github.com/gianpena/site" class="mt-auto flex flex-row items-center gap-[10px] hover:opacity-50 transition-opacity font-mono text-sm">
+        <img src={git_branch} alt="My website's GitHub page" class="w-3 h-3"/>
+        <span>{hash}</span>
+    </a>
 </nav>
