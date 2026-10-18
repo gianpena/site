@@ -1,8 +1,16 @@
 FROM oven/bun:latest
 WORKDIR /app
-EXPOSE 3000
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
 
 COPY . .
-RUN bun install
 RUN bun run build
-CMD ["bunx", "node", "build"]
+
+EXPOSE 3000
+
+CMD ["bun", "build/index.js"]

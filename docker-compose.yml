@@ -5,4 +5,6 @@ services:
     build: .
     ports:
       - "${PORT:-3000}:3000"
+    volumes:
+      - ".:/git:ro"
     restart: unless-stopped
