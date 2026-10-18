@@ -13,9 +13,9 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<NotFound>
-	<div class="min-h-screen justify-center">
-		<div class="mx-auto w-full max-w-4xl md:max-w-screen-xl px-6 py-10 flex flex-col md:flex-row gap-10 justify-center">
+	<NotFound>
+		<div class="min-h-screen flex flex-col justify-center">
+			<div class="flex-1 mx-auto w-full max-w-4xl md:max-w-screen-xl px-6 py-10 flex flex-col md:flex-row gap-10 justify-center">
 			{#key page.url.pathname}
 				<div in:pageIn class="flex flex-col">
 					{@render children()}
