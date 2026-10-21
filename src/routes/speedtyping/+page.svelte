@@ -65,7 +65,7 @@
 <div class="flex-1 flex flex-col gap-6 text-[20pt]">
     <span>I've been speedtyping for over 10 years, and am top 100 on major platforms like Monkeytype, TypeRacer, and TypeGG. I got especially interested in active improvement (as opposed to simply speedtyping for fun) in the summer of 2023, and I've been typing more actively since.</span>
     <span>You can check out some of my most notable stats below!</span>
-    <div class="flex flex-col text-[9pt] md:text-[12pt] mt-[20px] font-mono">
+    <div class="flex flex-col text-[8pt] md:text-[12pt] mt-[20px] font-mono">
         {#each Object.entries(speeds).sort() as [key, value] (key)}
             <div class="flex flex-row gap-2">
                 <div>
