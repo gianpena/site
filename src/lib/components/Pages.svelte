@@ -2,11 +2,13 @@
 
     import github from '$lib/assets/github.svg';
     import linkedin from '$lib/assets/linkedin.svg';
+    import anilist from '$lib/assets/anilist.svg';
     import git_branch from '$lib/assets/git-branch.svg';
 
     const externalResources = [
         { img: github, url: "https://github.com/gianpena", alt: "GitHub" },
-        { img: linkedin, url: "https://www.linkedin.com/in/gian-pena", alt: "LinkedIn" }
+        { img: linkedin, url: "https://www.linkedin.com/in/gian-pena", alt: "LinkedIn" },
+        { img: anilist, url: "https://anilist.co/user/gian", alt: "AniList" }
     ];
 
     const pages = [
