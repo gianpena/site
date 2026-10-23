@@ -15,7 +15,7 @@
         { title: "Home", path: "/" },
         { title: "Speedtyping", path: "/speedtyping" },
         { title: "Competitive Programming", path: "/competitive-programming" },
-        { title: "Resume", path: "/resume" }
+        { title: "Résumé", path: "/resume" }
     ];
 
     let { hash }: { hash: string } = $props();
