@@ -79,7 +79,7 @@
         {/each}
     </div>
     {#if data.time <= 1794787199 && data.entry}
-        <span>I am also participating in the TypeGG Championship of 2026 qualifying round! Currently, I am ranked {`${data.entry.rank}${numberEnding(data.entry.rank)}`} out of 24 seats.</span>
+        <span>I am also participating in the <a href="https://typegg.io/championship/2026">TypeGG 2026 Championship</a>'s qualifying round! Currently, I am ranked {`${data.entry.rank}${numberEnding(data.entry.rank)}`} out of 24 seats.</span>
     {/if}
 </div>
 
@@ -95,5 +95,9 @@
         0% { content: "."; }
         33% { content: ".."; }
         66% { content: "..."; }
+    }
+
+    a {
+        text-decoration: underline;
     }
 </style>
