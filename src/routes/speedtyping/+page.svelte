@@ -1,7 +1,10 @@
 <script lang="ts">
 
     import { onMount } from 'svelte';
-    import { fadeIn, fadeOut } from '$lib/utils.svelte';
+    import { fadeIn, fadeOut, numberEnding } from '$lib/utils.svelte';
+    import type { QualifierRanking } from '$lib/utils.svelte';
+
+    let { data }: { data: { entry: QualifierRanking, time: number } } = $props();
 
     let monkeytype_uid: string = "SoJQKReSXhQlSySyomOEOiorGAJ3";
     let typegg_uid: string = "4246w9nru2u5t16";
@@ -75,6 +78,9 @@
             </div>
         {/each}
     </div>
+    {#if data.time <= 1794787199 && data.entry}
+        <span>I am also participating in the TypeGG Championship of 2026 qualifying round! Currently, I am ranked {`${data.entry.rank}${numberEnding(data.entry.rank)}`} out of 24 seats.</span>
+    {/if}
 </div>
 
 <style>
