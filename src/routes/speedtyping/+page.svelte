@@ -77,7 +77,7 @@
         {/each}
     </div>
     {#await typeggQualifierPlacement() then entry}
-        <span>I am also participating in the <a href="https://typegg.io/championship/2026">TypeGG 2026 Championship</a>'s qualifying round! Currently, I am ranked {`${entry.rank}${numberEnding(entry.rank)}`} out of 24 seats.</span>
+        <span in:fadeIn>I am also participating in the <a href="https://typegg.io/championship/2026">TypeGG 2026 Championship</a>'s qualifying round! Currently, I am ranked {`${entry.rank}${numberEnding(entry.rank)}`} out of 24 seats.</span>
     {/await}
 </div>
 
