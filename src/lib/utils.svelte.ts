@@ -21,7 +21,7 @@ interface QualifierRanking {
 }
 
 const typeggQualifierPlacement = async (): Promise<QualifierRanking> => {
-    const response = await fetch("https://api.typegg.io/v1/championships/2026/qualifier");
+    const response = await fetch("https://api.typegg.io/v1/championships/2026/qualifier?perPage=24");
     const data = await response.json();
     const entry = data?.users?.find(({ username }: QualifierRanking) => username === "gian");
     if(!entry)
