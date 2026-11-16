@@ -1,8 +1,7 @@
 <script lang="ts">
 
     import { onMount } from 'svelte';
-    import { fadeIn, fadeOut, numberEnding } from '$lib/utils.svelte';
-    import { typeggQualifierPlacement } from '$lib/utils.svelte';
+    import { fadeIn, fadeOut } from '$lib/utils.svelte';
 
     let monkeytype_uid: string = "SoJQKReSXhQlSySyomOEOiorGAJ3";
     let typegg_uid: string = "4246w9nru2u5t16";
@@ -76,9 +75,10 @@
             </div>
         {/each}
     </div>
-    {#await typeggQualifierPlacement() then entry}
-        <span in:fadeIn>I am also participating in the <a href="https://typegg.io/championship/2026">TypeGG 2026 Championship</a>'s qualifying round! Currently, I am ranked {`${entry.rank}${numberEnding(entry.rank)}`} out of 24 seats.</span>
-    {/await}
+    <div>
+        <span>I am also participating in the <a href="https://typegg.io/championship/2026">TypeGG 2026 Championship</a>! I made it past the qualifying round, achieving the 17th seat (out of a possible 24).</span><br>
+        <span>The tournament will be taking place on the 5th of December.</span>
+    </div>
 </div>
 
 <style>
