@@ -8,6 +8,8 @@
 	import type { Snippet } from 'svelte';
 
 	let { data, children }: { data: { current_hash: string }, children: Snippet } = $props();
+
+	export const csr = false;
 </script>
 
 <svelte:head>
