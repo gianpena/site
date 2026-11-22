@@ -2,7 +2,6 @@
 
     import { onMount } from 'svelte';
     import { fadeIn, fadeOut } from '$lib/utils.svelte';
-    export const csr = true;
 
     let monkeytype_uid: string = "SoJQKReSXhQlSySyomOEOiorGAJ3";
     let typegg_uid: string = "4246w9nru2u5t16";
